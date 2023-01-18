@@ -5,33 +5,31 @@ import TodoList from "./components/TodoList";
 
 import './App.css'
 
+const LOCAL_STORAGE_KEY = "boma_todo_data";
+
 function App() {
 
-  const initialTodos = [
-    {
-      id: nanoid(),
-      complete: false,
-      name: "i'll become the pirate king"
-    },
-    {
-      id: nanoid(),
-      complete: true,
-      name: "I'll become Hokage"
-    },
-    {
-      id: nanoid(),
-      complete: false,
-      name: "I'll exterminate all titans"
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    let todoList = []
+    for (let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i)
+      let item = localStorage.getItem(key)
+      let todo = JSON.parse(item)
+      todoList.push(todo)
     }
-  ]
+    setTodos(todoList)
+  }, []);
 
-
-
-  const [todos, setTodos] = useState(initialTodos)
+  // useEffect(() => {
+  //   // fires when todos array is updated
+  //   console.log(todos)
+  // }, [todos]);
 
   const addTodoHandler = function (todo) {
-    // initialTodos.push(todo)
-    setTodos([todo, ...todos])
+    localStorage.setItem(`${todo.id}`, JSON.stringify(todo))
+    setTodos([todo, ...todos]);
   }
 
 
