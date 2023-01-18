@@ -1,18 +1,12 @@
 import { useState } from 'react'
 import './Todo.css'
 
-function Todo() {
-    const [note, setNote] = useState('')
-
-    const noteInputHandler = function (e) {
-        setNote(e.target.value);
-    }
-
+function Todo({ todo }) {
+    console.log(todo)
     return (
-        <div>
+        <div className='todo'>
             <input type="checkbox" id='checkbox' />
-            <span>todo one alooha</span>
-
+            <span>{todo.name}</span>
         </div>
     )
 }
