@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { nanoid } from 'nanoid';
 import { format } from 'date-fns';
+import './todoForm.css'
 
 let date = new Date()
 let dateFormated = format(date, 'dd-MMM')
@@ -49,7 +50,7 @@ function TodoInput({ handleTodoAdd }) {
 
     return (
         <>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={submitHandler} className='form'>
                 <input
                     ref={inputRef}
                     onChange={inputHandler}

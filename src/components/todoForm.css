@@ -1,0 +1,21 @@
+.form {
+  display: flex;
+  justify-content: space-between;
+  gap: 10%;
+}
+
+.form button {
+  border-radius: 3px;
+  border: 1px solid grey;
+  padding: 0.2em 1em;
+  font-size: 0.8em;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+.form button:focus,
+.form button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

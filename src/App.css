@@ -3,13 +3,8 @@
   margin-top: 10%;
   margin-inline: auto;
   padding: 2rem;
-  /* text-align: center; */
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.App {
+  width: 330px;
 }
