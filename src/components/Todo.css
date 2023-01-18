@@ -1,7 +1,23 @@
-.checkbox {
+.todo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block: 0.6em;
+}
+
+.checkbox--todo {
   margin-right: 0.5em;
 }
 
-.todo {
-  margin-block: 0.6em;
+.del-btn--todo {
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.del-btn--todo:hover {
+  border: 1px solid rgb(221, 10, 10);
+}
+
+.del-btn--todo img {
+  width: 15px;
 }

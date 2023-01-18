@@ -23,15 +23,20 @@ function App() {
     setTodos(todoList)
   }, []);
 
-  const addTodoHandler = function (todo) {
+  const handleTodoAdd = function (todo) {
     localStorage.setItem(`${todo.id}`, JSON.stringify(todo))
-    setTodos([todo, ...todos]);
+    // setTodos([todo, ...todos]);
+    setTodos((currTodo) => [todo, ...currTodo]);
+  }
+
+  const handleTodoDelete = function (todo) {
+
   }
 
   return (
     <div className="App">
       <TodoForm
-        addTodoHandler={addTodoHandler}
+        handleTodoAdd={handleTodoAdd}
       />
       <TodoList todos={todos} />
     </div>

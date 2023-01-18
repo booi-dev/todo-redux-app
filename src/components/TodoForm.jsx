@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 let date = new Date()
 let dateFormated = format(date, 'dd-MMM')
 
-function TodoInput({ addTodoHandler }) {
+function TodoInput({ handleTodoAdd }) {
     const inputRef = useRef()
 
     let todo = {
@@ -39,7 +39,7 @@ function TodoInput({ addTodoHandler }) {
 
     const submitHandler = function (e) {
         e.preventDefault();
-        addTodoHandler(todo)
+        handleTodoAdd(todo)
         clearInputVal()
     }
 
