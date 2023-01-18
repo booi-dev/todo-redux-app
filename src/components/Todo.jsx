@@ -6,7 +6,7 @@ function Todo({ todo }) {
     return (
         <div className='todo'>
             <input type="checkbox" className='checkbox' />
-            <span>{todo.name}</span>
+            <span>{todo.task}</span>
         </div>
     )
 }

@@ -1,13 +1,22 @@
 import { useState, useRef, useEffect } from 'react'
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
+import { format } from 'date-fns';
+
+let date = new Date()
+let dateFormated = format(date, 'dd-MMM')
 
 function TodoInput({ addTodoHandler }) {
     const inputRef = useRef()
 
     let todo = {
         id: nanoid(),
-        complete: false,
-        name: ""
+        task: "",
+        note: "",
+        dateOfCreation: Date.now(),
+        dueDate: dateFormated,
+        priority: "medium",
+        group: "dragon",
+        isComplete: false,
     }
 
     useEffect(() => {
@@ -16,19 +25,17 @@ function TodoInput({ addTodoHandler }) {
 
     const inputHandler = function (e) {
         // initialTodo = { ...initialTodo, name: e.target.value }
-        todo = { ...todo, name: inputRef.current.value }
+        todo = { ...todo, task: inputRef.current.value }
     }
-
 
     const clearInputVal = function () {
         todo = {
             id: nanoid(),
             complete: false,
-            name: ""
+            task: ""
         }
         inputRef.current.value = ''
     }
-
 
     const submitHandler = function (e) {
         e.preventDefault();

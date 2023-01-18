@@ -19,19 +19,14 @@ function App() {
       let todo = JSON.parse(item)
       todoList.push(todo)
     }
+    todoList.sort((a, b) => (a.dateOfCreation < b.dateOfCreation) ? 1 : -1);
     setTodos(todoList)
   }, []);
-
-  // useEffect(() => {
-  //   // fires when todos array is updated
-  //   console.log(todos)
-  // }, [todos]);
 
   const addTodoHandler = function (todo) {
     localStorage.setItem(`${todo.id}`, JSON.stringify(todo))
     setTodos([todo, ...todos]);
   }
-
 
   return (
     <div className="App">
