@@ -5,7 +5,7 @@ function Todo({ todo }) {
     // console.log(todo)
     return (
         <div className='todo'>
-            <input type="checkbox" id='checkbox' />
+            <input type="checkbox" className='checkbox' />
             <span>{todo.name}</span>
         </div>
     )
