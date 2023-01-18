@@ -1,10 +1,11 @@
-import { useState, useRef, useEffect, Fragment } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { nanoid } from 'nanoid'
 
-function TodoInput() {
+function TodoInput({ addTodoHandler }) {
     const inputRef = useRef()
 
-    let initialTodo = {
-        id: 1,
+    let todo = {
+        id: nanoid(),
         complete: false,
         name: ""
     }
@@ -15,12 +16,24 @@ function TodoInput() {
 
     const inputHandler = function (e) {
         // initialTodo = { ...initialTodo, name: e.target.value }
-        initialTodo = { ...initialTodo, name: inputRef.current.value }
+        todo = { ...todo, name: inputRef.current.value }
     }
+
+
+    const clearInputVal = function () {
+        todo = {
+            id: nanoid(),
+            complete: false,
+            name: ""
+        }
+        inputRef.current.value = ''
+    }
+
 
     const submitHandler = function (e) {
         e.preventDefault();
-        console.log(initialTodo.name)
+        addTodoHandler(todo)
+        clearInputVal()
     }
 
     const enterHandler = function (e) {
@@ -28,16 +41,17 @@ function TodoInput() {
     }
 
     return (
-        <Fragment>
+        <>
             <form onSubmit={submitHandler}>
                 <input
                     ref={inputRef}
                     onChange={inputHandler}
                     onKeyDown={enterHandler}
+                    required
                 />
                 <button type='submit'>add</button>
             </form>
-        </Fragment>
+        </>
     )
 
 }

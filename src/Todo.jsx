@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './Todo.css'
 
 function Todo({ todo }) {
-    console.log(todo)
+    // console.log(todo)
     return (
         <div className='todo'>
             <input type="checkbox" id='checkbox' />
