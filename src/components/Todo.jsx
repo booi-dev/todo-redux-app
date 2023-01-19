@@ -14,7 +14,7 @@ function Todo({ todo }) {
         >
             <div>
                 <input type="checkbox" className='checkbox--todo' />
-                <span>{todo.task}</span>
+                <h1 className='task--todo'>{todo.task}</h1>
             </div>
             <button className={btnClass}>
                 <img src={deleteIcon} />
