@@ -6,6 +6,11 @@ import deleteIcon from '../assets/delete.png';
 function Todo({ todo }) {
     const [btnClass, setBtnClass] = useState('del-btn--todo')
 
+    const handleDelBtnClick = function () {
+        console.log("Del btn click")
+    }
+
+
     return (
         <div
             className='todo'
@@ -16,7 +21,10 @@ function Todo({ todo }) {
                 <input type="checkbox" className='checkbox--todo' />
                 <h1 className='task--todo'>{todo.task}</h1>
             </div>
-            <button className={btnClass}>
+            <button
+                className={btnClass}
+                onClick={handleDelBtnClick}
+            >
                 <img src={deleteIcon} />
             </button>
         </div>
