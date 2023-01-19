@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
-import { nanoid } from 'nanoid'
+// import { nanoid } from 'nanoid'
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
+import SettingPanel from "./components/SettingPanel"
 
 import './App.css'
-
-const LOCAL_STORAGE_KEY = "boma_todo_data";
 
 function App() {
 
@@ -69,6 +68,7 @@ function App() {
         toggleCompleteStatus={toggleCompleteStatus}
         updateTodo={updateTodo}
       />
+      <SettingPanel />
     </div>
   )
 }

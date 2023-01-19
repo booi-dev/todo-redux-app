@@ -60,6 +60,7 @@ function TodoInput({ addTodo }) {
                     ref={inputRef}
                     onChange={inputHandler}
                     onKeyDown={enterHandler}
+                    placeholder="add note"
                     required
                 />
                 <button type='submit' className='sub-btn--form'>add</button>
