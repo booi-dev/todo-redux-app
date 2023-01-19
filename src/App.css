@@ -1,6 +1,8 @@
 :root {
-  --bg-card-1: #363636;
-  --bg-card-2: #373636;
+  --bg-card-1: #4e4e4e;
+  --bg-card-2: #303030;
+
+  --bg-card-wht-1: #303030;
 }
 
 #root {
