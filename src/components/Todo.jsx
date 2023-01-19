@@ -4,15 +4,18 @@ import './Todo.css'
 import deleteIcon from '../assets/delete.png';
 import deleteIconWarning from '../assets/delete-warn.png';
 
-function Todo({ todo, handleTodoDelete }) {
+function Todo({ todo, deleteTodo, toggleCompleteStatus }) {
     const [btnClass, setBtnClass] = useState('del-btn--todo')
     const [delBtnWarning, setSelBtnWarning] = useState(false)
     const [todoVanishingAnime, setTodoVanishingAnime] = useState(false)
 
     const handleDelBtnClick = function () {
         setTodoVanishingAnime(true)
-        setTimeout(() => { handleTodoDelete(todo) }, 1000);
+        setTimeout(() => { deleteTodo(todo.id) }, 1000);
+    }
 
+    const handleCheckboxOnChange = function () {
+        toggleCompleteStatus(todo.id)
     }
 
     return (
@@ -22,7 +25,12 @@ function Todo({ todo, handleTodoDelete }) {
             onMouseLeave={() => setBtnClass('del-btn--todo')}
         >
             <div>
-                <input type="checkbox" className='checkbox--todo' />
+                <input
+                    type="checkbox"
+                    className='checkbox--todo'
+                    onChange={handleCheckboxOnChange}
+                    checked={todo.isComplete}
+                />
                 <h1
                     className={todoVanishingAnime ? 'task--todo vanishing-anim' : 'task--todo'}
                 >

@@ -23,24 +23,39 @@ function App() {
     setTodos(todoList)
   }, []);
 
-  const handleTodoAdd = function (todo) {
+  const addTodo = function (todo) {
     localStorage.setItem(`${todo.id}`, JSON.stringify(todo))
     setTodos((currTodo) => [todo, ...currTodo]);
   }
 
-  const handleTodoDelete = function (todo) {
-    setTodos((currTodo) => currTodo.filter((item) => item.id != todo.id));
-    localStorage.removeItem(todo.id)
+  const deleteTodo = function (todoId) {
+    setTodos((currTodo) => currTodo.filter((item) => item.id != todoId));
+    localStorage.removeItem(todoId)
+  }
+
+  const toggleCompleteStatus = function (todoId) {
+    setTodos(
+      todos.map(todo => {
+        if (todo.id === todoId) {
+          let updatedTodo = { ...todo, isComplete: !todo.isComplete }
+          console.log(updatedTodo)
+          localStorage.setItem(todoId, JSON.stringify(updatedTodo))
+          return updatedTodo;
+        }
+        return todo;
+      })
+    );
   }
 
   return (
     <div className="App">
       <TodoForm
-        handleTodoAdd={handleTodoAdd}
+        addTodo={addTodo}
       />
       <TodoList
         todos={todos}
-        handleTodoDelete={handleTodoDelete}
+        deleteTodo={deleteTodo}
+        toggleCompleteStatus={toggleCompleteStatus}
       />
     </div>
   )

@@ -6,7 +6,7 @@ import './todoForm.css'
 let date = new Date()
 let dateFormated = format(date, 'dd-MMM')
 
-function TodoInput({ handleTodoAdd }) {
+function TodoInput({ addTodo }) {
     const inputRef = useRef()
 
     let todo = {
@@ -40,7 +40,7 @@ function TodoInput({ handleTodoAdd }) {
 
     const submitHandler = function (e) {
         e.preventDefault();
-        handleTodoAdd(todo)
+        addTodo(todo)
         clearInputVal()
     }
 

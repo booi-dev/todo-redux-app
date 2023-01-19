@@ -1,15 +1,15 @@
 import Todo from "./Todo";
 
-function TodoList({ todos, handleTodoDelete }) {
+function TodoList({ todos, deleteTodo, toggleCompleteStatus }) {
 
     return (
         <ul>
             {todos.map(todo => (
                 <Todo
                     key={todo.id}
-                    // key={todo.id}
                     todo={todo}
-                    handleTodoDelete={handleTodoDelete}
+                    deleteTodo={deleteTodo}
+                    toggleCompleteStatus={toggleCompleteStatus}
                 />
             ))}
         </ul>
