@@ -13,11 +13,12 @@
 
 .todo:hover {
   background: var(--bg-card-2);
+  border-left: 2px solid var(--acc-clr);
 }
 
 .todo.vanishing-anim {
   opacity: 0.2;
-  translate: 100%;
+  translate: -100%;
 }
 
 .checkbox--todo {

@@ -1,10 +1,12 @@
 :root {
+  --acc-clr: #e5660c;
   --bg-card-1: #4e4e4e;
   --bg-card-2: #303030;
 
   --bg-card-wht-1: #303030;
   --bg-card-blk-1: #191919;
 
+  --font-clr: #dcdcdc;
   --font-small: 12px;
 }
 

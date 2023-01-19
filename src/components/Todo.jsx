@@ -24,6 +24,10 @@ function Todo({ todo, deleteTodo, toggleCompleteStatus, updateTodo }) {
         setTodoView(!todoView)
     }
 
+    const handleEnterForTask = function (e) {
+        e.key === "Enter" && toggleTodoView()
+    }
+
     return (
         <>
             <div
@@ -39,8 +43,10 @@ function Todo({ todo, deleteTodo, toggleCompleteStatus, updateTodo }) {
                         checked={todo.isComplete}
                     />
                     <h1
+                        tabIndex={0}
                         className={todoVanishingAnime ? 'task--todo vanishing-anim' : 'task--todo'}
                         onClick={toggleTodoView}
+                        onKeyDown={handleEnterForTask}
                     >
                         {todo.task}
                     </h1>
