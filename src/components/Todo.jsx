@@ -7,21 +7,27 @@ import deleteIconWarning from '../assets/delete-warn.png';
 function Todo({ todo, handleTodoDelete }) {
     const [btnClass, setBtnClass] = useState('del-btn--todo')
     const [delBtnWarning, setSelBtnWarning] = useState(false)
+    const [todoVanishingAnime, setTodoVanishingAnime] = useState(false)
 
     const handleDelBtnClick = function () {
-        handleTodoDelete(todo)
-    }
+        setTodoVanishingAnime(true)
+        setTimeout(() => { handleTodoDelete(todo) }, 1000);
 
+    }
 
     return (
         <div
-            className='todo'
+            className={todoVanishingAnime ? 'todo vanishing-anim' : 'todo'}
             onMouseEnter={() => setBtnClass('del-btn--todo show')}
             onMouseLeave={() => setBtnClass('del-btn--todo')}
         >
             <div>
                 <input type="checkbox" className='checkbox--todo' />
-                <h1 className='task--todo'>{todo.task}</h1>
+                <h1
+                    className={todoVanishingAnime ? 'task--todo vanishing-anim' : 'task--todo'}
+                >
+                    {todo.task}
+                </h1>
             </div>
             <button
                 className={btnClass}
