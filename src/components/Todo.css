@@ -7,11 +7,12 @@
   padding: 0.5em;
   cursor: pointer;
   border-radius: 5px;
+  border-bottom: 1px solid var(--bg-card-2);
   transition: background 0.7s ease, opacity 1s ease-in, translate 1s ease-in;
 }
 
 .todo:hover {
-  background: var(--bg-card-1);
+  background: var(--bg-card-2);
 }
 
 .todo.vanishing-anim {
