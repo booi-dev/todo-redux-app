@@ -1,15 +1,18 @@
 :root {
   --acc-clr: #e5660c;
-  --bg-card-1: #4e4e4e;
-  --bg-card-2: #303030;
-  --bg-card-3: #878787;
 
-  --bg-card-wht-1: #303030;
-  --bg-card-blk-1: #191919;
+  --clr-1: #4e4e4e;
+  --clr-2: #303030;
+  --clr-3: #878787;
+
+  --clr-wht-1: #303030;
+  --clr-blk-1: #191919;
 
   --font-clr: #dcdcdc;
-  --font-small: 12px;
+
   --font-xsmall: 10px;
+  --font-small: 12px;
+  --font-medium: 15px;
 }
 
 #root {
@@ -22,6 +25,6 @@
 .App {
   width: 330px;
   position: relative;
-  border-right: 2px solid var(--bg-card-blk-1);
+  border-right: 2px solid var(--clr-blk-1);
   border-radius: 5px;
 }

@@ -7,12 +7,12 @@
   padding: 0.5em;
   cursor: pointer;
   border-radius: 5px;
-  border-bottom: 1px solid var(--bg-card-2);
+  border-bottom: 1px solid var(--clr-2);
   transition: background 0.7s ease, opacity 1s ease-in, translate 1s ease-in;
 }
 
 .todo:hover {
-  background: var(--bg-card-2);
+  background: var(--clr-2);
   border-left: 2px solid var(--acc-clr);
 }
 
@@ -22,11 +22,33 @@
 }
 
 .checkbox--todo {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--clr-1);
+  translate: 0 4px;
   margin-right: 0.8em;
+  position: relative;
+  transition: border 0.5s ease-in;
+}
+
+.checkbox--todo:checked {
+  border: 2px solid var(--acc-clr);
+}
+
+.checkbox--todo:checked::before {
+  content: " ";
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  background-color: var(--acc-clr);
 }
 
 .task--todo {
-  font-size: 16px;
+  font-size: var(--font-medium);
   font-weight: 400;
   display: inline;
   transition: opacity 0.7s ease-in;

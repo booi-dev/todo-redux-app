@@ -4,8 +4,7 @@ A button to mark a task as completed. X
 A button to delete a task. X
 An option to edit an existing task. X
 A local storage integration. X
-
-A filter to view only the completed tasks or active tasks.
+A filter to view only the completed tasks or active tasks. X
 
 additional
 a search bar,

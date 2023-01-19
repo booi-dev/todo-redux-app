@@ -13,7 +13,7 @@
 }
 
 .input--form:hover {
-  background-color: var(--bg-card-2);
+  background-color: var(--clr-2);
   border-color: var(--acc-clr);
 }
 
@@ -23,7 +23,7 @@
   padding: 0.2em 1em;
   font-size: 0.8em;
   font-family: inherit;
-  background-color: var(--bg-card-wht-1);
+  background-color: var(--clr-wht-1);
   cursor: pointer;
   transition: border-color 0.8s ease-in;
 }
