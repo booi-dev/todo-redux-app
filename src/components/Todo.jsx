@@ -4,12 +4,12 @@ import './Todo.css'
 import deleteIcon from '../assets/delete.png';
 import deleteIconWarning from '../assets/delete-warn.png';
 
-function Todo({ todo }) {
+function Todo({ todo, handleTodoDelete }) {
     const [btnClass, setBtnClass] = useState('del-btn--todo')
     const [delBtnWarning, setSelBtnWarning] = useState(false)
 
     const handleDelBtnClick = function () {
-        console.log("Del btn click")
+        handleTodoDelete(todo)
     }
 
 

@@ -25,12 +25,12 @@ function App() {
 
   const handleTodoAdd = function (todo) {
     localStorage.setItem(`${todo.id}`, JSON.stringify(todo))
-    // setTodos([todo, ...todos]);
     setTodos((currTodo) => [todo, ...currTodo]);
   }
 
   const handleTodoDelete = function (todo) {
-
+    setTodos((currTodo) => currTodo.filter((item) => item.id != todo.id));
+    localStorage.removeItem(todo.id)
   }
 
   return (
@@ -38,7 +38,10 @@ function App() {
       <TodoForm
         handleTodoAdd={handleTodoAdd}
       />
-      <TodoList todos={todos} />
+      <TodoList
+        todos={todos}
+        handleTodoDelete={handleTodoDelete}
+      />
     </div>
   )
 }

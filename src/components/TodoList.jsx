@@ -1,6 +1,7 @@
 import Todo from "./Todo";
 
-function Todos({ todos }) {
+function TodoList({ todos, handleTodoDelete }) {
+
     return (
         <ul>
             {todos.map(todo => (
@@ -8,10 +9,11 @@ function Todos({ todos }) {
                     key={todo.id}
                     // key={todo.id}
                     todo={todo}
+                    handleTodoDelete={handleTodoDelete}
                 />
             ))}
         </ul>
     )
 }
 
-export default Todos;
+export default TodoList;
