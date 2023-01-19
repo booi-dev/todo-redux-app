@@ -22,4 +22,6 @@
 .App {
   width: 330px;
   position: relative;
+  border-right: 2px solid var(--bg-card-blk-1);
+  border-radius: 5px;
 }

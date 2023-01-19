@@ -29,6 +29,7 @@
 }
 
 .sub-btn--form:hover {
+  scale: 102%;
   border-color: var(--acc-clr);
   color: var(--acc-clr);
 }

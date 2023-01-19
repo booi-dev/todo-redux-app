@@ -10,7 +10,7 @@ function App() {
 
   const [todos, setTodos] = useState([]);
 
-  useEffect(() => {
+  const getTodoDataFromStorage = function () {
     let todoList = []
     for (let i = 0; i < localStorage.length; i++) {
       let key = localStorage.key(i)
@@ -19,7 +19,12 @@ function App() {
       todoList.push(todo)
     }
     todoList.sort((a, b) => (a.dateOfCreation < b.dateOfCreation) ? 1 : -1);
-    setTodos(todoList)
+    return todoList;
+  }
+
+  useEffect(() => {
+    let todoList = getTodoDataFromStorage()
+    setTodos(todoList);
   }, []);
 
   const addTodo = function (todo) {
@@ -57,6 +62,21 @@ function App() {
     );
   }
 
+  const [hideCompletedTasks, setHideCompletedTasks] = useState(false)
+
+  const toggleCompletedTasks = function () {
+    setHideCompletedTasks(!hideCompletedTasks)
+    if (!hideCompletedTasks) {
+      let filteredTodos = todos.filter(todo => {
+        return todo.isComplete === false;
+      })
+      setTodos(filteredTodos)
+    } else {
+      let todoData = getTodoDataFromStorage()
+      setTodos(todoData)
+    }
+  }
+
   return (
     <div className="App">
       <TodoForm
@@ -68,7 +88,9 @@ function App() {
         toggleCompleteStatus={toggleCompleteStatus}
         updateTodo={updateTodo}
       />
-      <SettingPanel />
+      <SettingPanel
+        toggleCompletedTasks={toggleCompletedTasks}
+      />
     </div>
   )
 }
