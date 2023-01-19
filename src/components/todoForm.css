@@ -4,28 +4,36 @@
   gap: 10%;
 }
 
-.form input {
+.input--form {
   border-radius: 5px;
-  border: none;
+  /* border: none; */
   width: 100%;
+  border: 1px solid transparent;
+  transition: border-color 0.8s ease-in;
 }
 
-.form input:hover {
+.input--form:hover {
   background-color: var(--bg-card-2);
+  border-color: var(--acc-clr);
 }
 
-.form button {
+.sub-btn--form {
   border-radius: 5px;
-  border: none;
+  border: 1px solid transparent;
   padding: 0.2em 1em;
   font-size: 0.8em;
   font-family: inherit;
   background-color: var(--bg-card-wht-1);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.8s ease-in;
 }
 
-.form button:focus,
-.form button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.sub-btn--form:hover {
+  border-color: var(--acc-clr);
+  color: var(--acc-clr);
+}
+
+.sub-btn--form:focus,
+.sub-btn--form:focus-visible {
+  outline: 1px auto -webkit-focus-ring-color;
 }

@@ -51,14 +51,18 @@ function TodoInput({ addTodo }) {
 
     return (
         <>
-            <form onSubmit={submitHandler} className='form'>
+            <form
+                onSubmit={submitHandler}
+                className='form'
+            >
                 <input
+                    className='input--form'
                     ref={inputRef}
                     onChange={inputHandler}
                     onKeyDown={enterHandler}
                     required
                 />
-                <button type='submit'>add</button>
+                <button type='submit' className='sub-btn--form'>add</button>
             </form>
         </>
     )
