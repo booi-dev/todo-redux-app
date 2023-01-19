@@ -1,3 +1,8 @@
+:root {
+  --bg-card-1: #363636;
+  --bg-card-2: #373636;
+}
+
 #root {
   max-width: 1280px;
   margin-top: 10%;
@@ -7,4 +12,5 @@
 
 .App {
   width: 330px;
+  position: relative;
 }

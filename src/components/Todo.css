@@ -1,7 +1,3 @@
-:root {
-  --bg-card: rgb(54, 54, 54);
-}
-
 .todo {
   display: flex;
   align-items: center;
@@ -15,7 +11,7 @@
 }
 
 .todo:hover {
-  background: var(--bg-card);
+  background: var(--bg-card-1);
 }
 
 .todo.vanishing-anim {

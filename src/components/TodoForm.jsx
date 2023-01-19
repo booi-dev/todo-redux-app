@@ -31,6 +31,7 @@ function TodoInput({ addTodo }) {
 
     const clearInputVal = function () {
         todo = {
+            ...todo,
             id: nanoid(),
             complete: false,
             task: ""
