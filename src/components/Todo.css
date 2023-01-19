@@ -43,3 +43,8 @@
 .del-btn--todo img {
   width: 15px;
 }
+
+.del-icon-warning--todo {
+  transition: scale 0.5s;
+  scale: 1.3;
+}
