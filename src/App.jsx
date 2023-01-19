@@ -38,8 +38,19 @@ function App() {
       todos.map(todo => {
         if (todo.id === todoId) {
           let updatedTodo = { ...todo, isComplete: !todo.isComplete }
-          console.log(updatedTodo)
           localStorage.setItem(todoId, JSON.stringify(updatedTodo))
+          return updatedTodo;
+        }
+        return todo;
+      })
+    );
+  }
+
+  const updateTodo = function (updatedTodo) {
+    setTodos(
+      todos.map(todo => {
+        if (todo.id === updatedTodo.id) {
+          localStorage.setItem(todo.id, JSON.stringify(updatedTodo))
           return updatedTodo;
         }
         return todo;
@@ -56,6 +67,7 @@ function App() {
         todos={todos}
         deleteTodo={deleteTodo}
         toggleCompleteStatus={toggleCompleteStatus}
+        updateTodo={updateTodo}
       />
     </div>
   )

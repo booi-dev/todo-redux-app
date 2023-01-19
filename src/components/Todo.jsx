@@ -5,7 +5,7 @@ import './Todo.css'
 import deleteIcon from '../assets/delete.png';
 import deleteIconWarning from '../assets/delete-warn.png';
 
-function Todo({ todo, deleteTodo, toggleCompleteStatus }) {
+function Todo({ todo, deleteTodo, toggleCompleteStatus, updateTodo }) {
     const [btnClass, setBtnClass] = useState('del-btn--todo');
     const [delBtnWarning, setSelBtnWarning] = useState(false);
     const [todoVanishingAnime, setTodoVanishingAnime] = useState(false);
@@ -56,7 +56,10 @@ function Todo({ todo, deleteTodo, toggleCompleteStatus }) {
                         : <img src={deleteIcon} />}
                 </button>
             </div>
-            {todoView && <TodoView todo={todo} toggleTodoView={toggleTodoView} />}
+            {todoView && <TodoView todo={todo}
+                toggleTodoView={toggleTodoView}
+                updateTodo={updateTodo}
+            />}
         </>
     )
 }

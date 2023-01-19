@@ -22,7 +22,7 @@ function TodoInput({ addTodo }) {
 
     useEffect(() => {
         inputRef.current.focus()
-    })
+    }, [])
 
     const inputHandler = function (e) {
         // initialTodo = { ...initialTodo, name: e.target.value }
