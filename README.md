@@ -20,7 +20,8 @@ Sample images:
 <img src="https://user-images.githubusercontent.com/56810550/213792199-736ef841-414b-4a55-ade0-b8c91654ec1c.png" width=300 height=auto> <img src="https://user-images.githubusercontent.com/56810550/213792207-1f87f6cb-5427-4b8f-b250-8af878e1ffcf.png" width=400 height=auto> <img src="https://user-images.githubusercontent.com/56810550/213792223-c2b406d8-8caa-41a7-baff-fb6d75762a8b.png" width=300 height=auto>
 
 Features to be added. <br>
-#Clear storage animation. <br>
+#Accessibility. <br>
+#Animation when list is clearing. <br>
 #A search bar. <br>
 #Light color mode. <br>
 #Cloud storage
