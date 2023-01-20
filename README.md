@@ -10,4 +10,6 @@ additional
 a search bar,
 a sorting option,
 
+clear storage
 dark mode/light mode color change
+responsiveness

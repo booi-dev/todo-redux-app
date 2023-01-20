@@ -13,7 +13,7 @@
 
 .todo:hover {
   background: var(--clr-2);
-  border-left: 2px solid var(--acc-clr);
+  border-bottom: 2px solid var(--acc-clr);
 }
 
 .todo.vanishing-anim {

@@ -6,8 +6,9 @@
 
 .input--form {
   border-radius: 5px;
-  padding: 0 0.6em;
+  padding: 0.3em 0.6em;
   width: 100%;
+  font-size: var(--font-medium);
   border: 1px solid transparent;
   transition: border-color 0.8s ease-in;
 }
