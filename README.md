@@ -1,4 +1,4 @@
-A SIMPLE TODO ADD <br>
+A SIMPLE TODO APP <br>
 
 Created with: - REACT, VITE <br>
 
