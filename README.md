@@ -5,11 +5,9 @@ A button to delete a task. X
 An option to edit an existing task. X
 A local storage integration. X
 A filter to view only the completed tasks or active tasks. X
-
-additional
-a search bar,
-a sorting option,
-
 clear storage
-dark mode/light mode color change
 responsiveness
+
+ADDITIONAL(S)
+a search bar,
+dark mode/light mode color change
