@@ -1,0 +1,87 @@
+.todo-view {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  position: absolute;
+  inset: 0;
+  left: -20%;
+  right: -20%;
+  min-height: 240px;
+  padding: 2em;
+  border-radius: 5px;
+  color: var(--font-clr);
+  background-color: var(--clr-2);
+  z-index: 2;
+}
+
+.task--view {
+  min-height: 2.2em;
+}
+
+.task--view,
+.note--view {
+  resize: none;
+  background-color: inherit;
+  border: none;
+  padding: 0.5em;
+  border-radius: 5px;
+  color: inherit;
+  line-height: var(--line-height);
+  font-size: var(--font-medium);
+  transition: background 0.5s ease-in;
+}
+
+.task--view::-webkit-scrollbar,
+.note--view::-webkit-scrollbar {
+  display: none;
+}
+
+.task--view,
+.note--view {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.task--view:hover,
+.note--view:hover {
+  background: var(--clr-blk-1);
+  border: none;
+  border-bottom: 2px solid var(--acc-clr);
+}
+
+.note-label {
+  padding: 0 0.5em;
+  margin-top: 0.5em;
+  font-size: var(--font-small);
+}
+
+.note--view {
+  min-height: 5em;
+}
+
+.del-btn--view {
+  background-color: var(--clr-blk-1);
+  border: none;
+  padding: 0.3em;
+  margin-top: 0.6em;
+  border-radius: 5px;
+  color: inherit;
+  font-size: var(--font-small);
+}
+
+.del-btn--view:hover {
+  border-bottom: 2px solid var(--acc-clr);
+}
+
+/* backdrop */
+.back-drop--todo-view {
+  background-color: #37363611;
+  position: fixed;
+  inset: 0;
+}
+
+@media (max-width: 500px) {
+  .todo-view {
+    inset: 0;
+  }
+}
