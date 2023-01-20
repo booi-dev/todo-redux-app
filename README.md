@@ -6,7 +6,7 @@ An option to edit an existing task. X
 A local storage integration. X
 A filter to view only the completed tasks or active tasks. X
 Clear storage. X
-Responsiveness
+Responsiveness. X
 
 ADDITIONAL(S)
 Clear storage animation.
