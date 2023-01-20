@@ -31,3 +31,12 @@
   border-right: 2px solid var(--clr-blk-1);
   border-radius: 5px;
 }
+
+@media (max-width: 500px) {
+  .App {
+    width: 300px;
+  }
+  #root {
+    padding: 0.5rem;
+  }
+}

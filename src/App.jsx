@@ -94,6 +94,8 @@ function App() {
       />
       <SettingPanel
         toggleCompletedTasks={toggleCompletedTasks}
+        todoList={todos}
+        deleteTodo={deleteTodo}
         clearAllTodo={clearAllTodo}
       />
     </div>
