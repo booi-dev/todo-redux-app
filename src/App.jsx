@@ -62,6 +62,10 @@ function App() {
     );
   }
 
+  const clearAllTodo = function () {
+    setTodos([])
+  }
+
   const [hideCompletedTasks, setHideCompletedTasks] = useState(false)
 
   const toggleCompletedTasks = function () {
@@ -90,6 +94,7 @@ function App() {
       />
       <SettingPanel
         toggleCompletedTasks={toggleCompletedTasks}
+        clearAllTodo={clearAllTodo}
       />
     </div>
   )
