@@ -1,9 +1,10 @@
 import Todo from "./Todo";
+import './TodoList.css'
 
 function TodoList({ todos, deleteTodo, toggleCompleteStatus, updateTodo }) {
 
     return (
-        <ul>
+        <ul className="todo-list">
             {todos.map(todo => (
                 <Todo
                     key={todo.id}
