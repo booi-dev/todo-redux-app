@@ -1,14 +1,20 @@
-import { useState, useEffect } from 'react'
-// import { nanoid } from 'nanoid'
+import { useState, useEffect, useContext } from 'react'
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import SettingPanel from "./components/SettingPanel"
+import { useTheme, useUpdateTheme } from './components/ThemeContext';
 
 import './App.css'
 
 function App() {
 
+  const lightTheme = useTheme()
+  console.log(lightTheme)
+
   const [todos, setTodos] = useState([]);
+  const [theme, setTheme] = useState('dark');
+
+  // setTheme('light')
 
   const getTodoDataFromStorage = function () {
     let todoList = []
@@ -22,10 +28,16 @@ function App() {
     return todoList;
   }
 
+  let todoData = getTodoDataFromStorage()
+
   useEffect(() => {
-    let todoList = getTodoDataFromStorage()
-    setTodos(todoList);
+    setTodos(todoData);
   }, []);
+
+  useEffect(() => {
+    console.log("use effect calls")
+    lightTheme ? setTheme('light') : setTheme('dark')
+  }, [lightTheme])
 
   const addTodo = function (todo) {
     localStorage.setItem(`${todo.id}`, JSON.stringify(todo))
@@ -82,22 +94,24 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <TodoForm
-        addTodo={addTodo}
-      />
-      <TodoList
-        todos={todos}
-        deleteTodo={deleteTodo}
-        toggleCompleteStatus={toggleCompleteStatus}
-        updateTodo={updateTodo}
-      />
-      <SettingPanel
-        toggleCompletedTasks={toggleCompletedTasks}
-        todoList={todos}
-        deleteTodo={deleteTodo}
-        clearAllTodo={clearAllTodo}
-      />
+    <div className={`app-container ${theme}`}>
+      <div className='App'>
+        <TodoForm
+          addTodo={addTodo}
+        />
+        <TodoList
+          todos={todos}
+          deleteTodo={deleteTodo}
+          toggleCompleteStatus={toggleCompleteStatus}
+          updateTodo={updateTodo}
+        />
+        <SettingPanel
+          toggleCompletedTasks={toggleCompletedTasks}
+          todoList={todos}
+          deleteTodo={deleteTodo}
+          clearAllTodo={clearAllTodo}
+        />
+      </div>
     </div>
   )
 }

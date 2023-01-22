@@ -1,0 +1,17 @@
+.todo-list {
+  max-height: 65vh;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.todo-list::-webkit-scrollbar {
+  width: 2px;
+  height: 1em;
+}
+
+.todo-list::-webkit-scrollbar-thumb {
+  background-color: var(--acc-clr);
+  border-radius: 40%;
+  height: 10px;
+  background-clip: content-box;
+}

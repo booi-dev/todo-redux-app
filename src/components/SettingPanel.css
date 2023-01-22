@@ -3,7 +3,6 @@
   right: -60px;
   top: 0;
   font-size: var(--font-small);
-  /* margin-left: 0.3em; */
 }
 
 .btns-con--setting {
@@ -39,22 +38,37 @@
   width: 12px;
 }
 
-.filter-label,
-.clear-label {
+.label,
+.label {
   display: none;
   position: absolute;
+  left: 0%;
   text-align: center;
   font-size: var(--font-xsmall);
   background-color: var(--clr-3);
   color: var(--font-clr-blk);
-  padding: 0 0.3em;
-  width: max-content;
-  translate: -25% -2.5em;
+  padding: 0.3em;
+  line-height: 15px;
+  width: 200%;
+  translate: -25% -3em;
 }
 
-.filter-label.show,
-.clear-label.show {
+.label.show,
+.label.show {
   display: block;
+}
+
+.theme.btns-con--setting {
+  display: flex;
+  justify-content: center;
+}
+
+.theme.light.btns-con--setting {
+  background-color: var(--clr-3);
+}
+
+.theme.dark.btns-con--setting {
+  background-color: var(--clr-blk-1);
 }
 
 @media (max-width: 500px) {

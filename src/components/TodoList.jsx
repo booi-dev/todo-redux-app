@@ -1,8 +1,8 @@
 import Todo from "./Todo";
 import './TodoList.css'
 
-function TodoList({ todos, deleteTodo, toggleCompleteStatus, updateTodo }) {
-
+function TodoList(props) {
+    const { todos, deleteTodo, toggleCompleteStatus, updateTodo } = props;
     return (
         <ul className="todo-list">
             {todos.map(todo => (

@@ -1,18 +1,21 @@
-import { useState } from 'react'
+import { useState, createContext } from 'react'
 import TodoView from './TodoView'
 import './Todo.css'
 
 import deleteIcon from '../assets/delete.png';
 import deleteIconWarning from '../assets/delete-warn.png';
 
-function Todo({ todo, deleteTodo, toggleCompleteStatus, updateTodo }) {
+function Todo(props) {
+
+    const { todo, deleteTodo, toggleCompleteStatus, updateTodo } = props;
+
     const [btnClass, setBtnClass] = useState('del-btn--todo');
     const [delBtnWarning, setSelBtnWarning] = useState(false);
-    const [todoVanishingAnime, setTodoVanishingAnime] = useState(false);
+    const [todoVanishingAnim, setTodoVanishingAnim] = useState(false);
     const [todoView, setTodoView] = useState(false)
 
     const handleDelBtnClick = function () {
-        setTodoVanishingAnime(true)
+        setTodoVanishingAnim(true)
         setTimeout(() => { deleteTodo(todo.id) }, 1000);
     }
 
@@ -31,7 +34,7 @@ function Todo({ todo, deleteTodo, toggleCompleteStatus, updateTodo }) {
     return (
         <>
             <div
-                className={todoVanishingAnime ? 'todo vanishing-anim' : 'todo'}
+                className={todoVanishingAnim ? 'todo vanishing-anim' : 'todo'}
                 onMouseEnter={() => setBtnClass('del-btn--todo show')}
                 onMouseLeave={() => setBtnClass('del-btn--todo')}
             >
@@ -44,7 +47,7 @@ function Todo({ todo, deleteTodo, toggleCompleteStatus, updateTodo }) {
                     />
                     <h1
                         tabIndex={0}
-                        className={todoVanishingAnime ? 'task--todo vanishing-anim' : 'task--todo'}
+                        className={todoVanishingAnim ? 'task--todo vanishing-anim' : 'task--todo'}
                         onClick={toggleTodoView}
                         onKeyDown={handleEnterForTask}
                     >
@@ -70,4 +73,4 @@ function Todo({ todo, deleteTodo, toggleCompleteStatus, updateTodo }) {
     )
 }
 
-export default Todo
+export default Todo;
