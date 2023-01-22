@@ -7,6 +7,7 @@ Created with: - REACT, VITE <br>
 Helper packages: date-fns (for handling date format), nanoid (for generating unique IDs) <br>
 
 FEATURES:
+
 1. Add new task. <br>
 2. Mark a task as completed. <br>
 3. Delete a task. <br>
@@ -23,7 +24,7 @@ Features to be added. <br>
 #Accessibility. <br>
 #Animation when list is clearing. <br>
 #A search bar. <br>
-#Light color mode. <br>
+#Light color mode. [ADDED] <br>
 #Cloud storage
 
 view live demo: <br>

@@ -18,6 +18,12 @@
   border-color: var(--acc-clr);
 }
 
+.input--form.light {
+  color: var(--lt-font-clr-1);
+  background-color: var(--lt-clr-1);
+  border-color: var(--clr-3);
+}
+
 .sub-btn--form {
   border-radius: 5px;
   border: 1px solid transparent;
@@ -27,6 +33,12 @@
   background-color: var(--clr-wht-1);
   cursor: pointer;
   transition: border-color 0.8s ease-in;
+}
+
+.sub-btn--form.light {
+  color: var(--lt-font-clr-1);
+  background-color: var(--lt-clr-1);
+  border-color: var(--clr-3);
 }
 
 .sub-btn--form:hover {

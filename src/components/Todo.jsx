@@ -1,21 +1,31 @@
-import { useState, createContext } from 'react'
+import { useState, useEffect } from 'react'
 import TodoView from './TodoView'
 import './Todo.css'
 
 import deleteIcon from '../assets/delete.png';
 import deleteIconWarning from '../assets/delete-warn.png';
 
+import { useTheme } from './ThemeContext';
+
 function Todo(props) {
 
     const { todo, deleteTodo, toggleCompleteStatus, updateTodo } = props;
 
+    const lightTheme = useTheme()
+    const [theme, setTheme] = useState('dark');
+
     const [btnClass, setBtnClass] = useState('del-btn--todo');
     const [delBtnWarning, setSelBtnWarning] = useState(false);
-    const [todoVanishingAnim, setTodoVanishingAnim] = useState(false);
+    const [todoAnimClass, setTodoAnimClass] = useState('');
+
     const [todoView, setTodoView] = useState(false)
 
+    useEffect(() => {
+        lightTheme ? setTheme('light') : setTheme('dark')
+    }, [lightTheme])
+
     const handleDelBtnClick = function () {
-        setTodoVanishingAnim(true)
+        setTodoAnimClass('vanishing-anim')
         setTimeout(() => { deleteTodo(todo.id) }, 1000);
     }
 
@@ -34,7 +44,7 @@ function Todo(props) {
     return (
         <>
             <div
-                className={todoVanishingAnim ? 'todo vanishing-anim' : 'todo'}
+                className={`todo ${todoAnimClass} ${theme}`}
                 onMouseEnter={() => setBtnClass('del-btn--todo show')}
                 onMouseLeave={() => setBtnClass('del-btn--todo')}
             >
@@ -47,7 +57,7 @@ function Todo(props) {
                     />
                     <h1
                         tabIndex={0}
-                        className={todoVanishingAnim ? 'task--todo vanishing-anim' : 'task--todo'}
+                        className={`task--todo ${todoAnimClass}`}
                         onClick={toggleTodoView}
                         onKeyDown={handleEnterForTask}
                     >

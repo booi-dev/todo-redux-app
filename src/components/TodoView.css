@@ -4,7 +4,7 @@
   gap: 0.3em;
   position: fixed;
   inset: 0;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 450px;
@@ -15,6 +15,10 @@
   background-color: var(--clr-2);
   box-shadow: 0px 0px 2px var(--clr-3);
   z-index: 2;
+}
+
+.todo-view.light {
+  background-color: var(--lt-clr-1);
 }
 
 .task--view {
@@ -52,6 +56,17 @@
   border-bottom: 2px solid var(--acc-clr);
 }
 
+.task--view.light,
+.note--view.light {
+  transition: revert;
+  background: var(--lt-clr-1);
+}
+
+.task--view.light:hover,
+.note--view.light:hover {
+  background: var(--lt-clr-2);
+}
+
 .note-label {
   padding: 0 0.5em;
   margin-top: 0.5em;
@@ -70,6 +85,10 @@
   border-radius: 5px;
   color: inherit;
   font-size: var(--font-small);
+}
+
+.del-btn--view.light {
+  background-color: var(--lt-clr-2);
 }
 
 .del-btn--view:hover {

@@ -18,6 +18,11 @@
   margin-bottom: 0.5em;
 }
 
+.btns-con--setting.light {
+  background-color: var(--lt-clr-1);
+  color: var(--lt-font-clr-1);
+}
+
 .btns-con--setting:hover {
   scale: 105%;
 }
@@ -78,6 +83,15 @@
     position: relative;
     inset: revert;
     top: 1em;
+    gap: 0.5em;
     bottom: 0;
+  }
+  .btns-con--setting {
+    justify-content: center;
+    flex: 1;
+    padding: 0;
+  }
+  .btn--setting {
+    font-size: var(--font-medium);
   }
 }

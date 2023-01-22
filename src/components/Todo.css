@@ -16,6 +16,10 @@
   border-bottom: 2px solid var(--acc-clr);
 }
 
+.todo.light:hover {
+  background: revert;
+}
+
 .todo.vanishing-anim {
   opacity: 0.2;
   translate: -100%;

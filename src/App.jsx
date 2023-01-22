@@ -2,19 +2,16 @@ import { useState, useEffect, useContext } from 'react'
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import SettingPanel from "./components/SettingPanel"
-import { useTheme, useUpdateTheme } from './components/ThemeContext';
+import { useTheme } from './components/ThemeContext';
 
 import './App.css'
 
 function App() {
 
   const lightTheme = useTheme()
-  console.log(lightTheme)
-
-  const [todos, setTodos] = useState([]);
   const [theme, setTheme] = useState('dark');
 
-  // setTheme('light')
+  const [todos, setTodos] = useState([]);
 
   const getTodoDataFromStorage = function () {
     let todoList = []
@@ -35,7 +32,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log("use effect calls")
     lightTheme ? setTheme('light') : setTheme('dark')
   }, [lightTheme])
 

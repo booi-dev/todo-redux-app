@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import checkboxIcon from '../assets/checkbox.png'
 import storageIcon from '../assets/storage.png'
 import storageWarningIcon from '../assets/storage-warning.png'
@@ -13,6 +13,7 @@ function SettingPanel({ toggleCompletedTasks, clearAllTodo, todoList, deleteTodo
 
     const lightTheme = useTheme()
     const updateTheme = useUpdateTheme()
+    const [theme, setTheme] = useState('dark');
     // console.log(lightTheme)
 
     const [isCompletedTaskHide, setIsCompletedTaskHide] = useState(false);
@@ -29,6 +30,10 @@ function SettingPanel({ toggleCompletedTasks, clearAllTodo, todoList, deleteTodo
     let btnHideTaskLabel = isCompletedTaskHide ? 'show completeed task(s)' : 'hide completeed task(s)'
     let btnClearStorageLabel = 'clear local storage'
 
+    useEffect(() => {
+        lightTheme ? setTheme('light') : setTheme('dark')
+    }, [lightTheme])
+
     const toggleCompletedTaskHide = function () {
         setIsCompletedTaskHide(!isCompletedTaskHide)
         toggleCompletedTasks()
@@ -36,9 +41,9 @@ function SettingPanel({ toggleCompletedTasks, clearAllTodo, todoList, deleteTodo
 
     const clearLocalStorage = function (params) {
         // localStorage.clear();
-        todoList.forEach((todo) => {
-            deleteTodo(todo.id)
-        })
+        // todoList.forEach((todo) => {
+        //     deleteTodo(todo.id)
+        // })
         // clearAllTodo()
         console.log("clearing storage")
     }
@@ -61,20 +66,20 @@ function SettingPanel({ toggleCompletedTasks, clearAllTodo, todoList, deleteTodo
     return (
         <>
             <div className="setting-panel">
-                <div className='filter btns-con--setting'
+                <div className={`filter btns-con--setting ${theme}`}
                     onClick={toggleCompletedTaskHide}
                     onMouseEnter={() => setFilterLabelClass('show')}
                     onMouseLeave={() => setFilterLabelClass('hide')}>
                     <label className={`filter label ${filterLabelClass}`}>{btnHideTaskLabel}</label>
-                    <button className='btn--setting'> {btnHideTaskText}</button>
+                    <button className={`filter btn--setting ${theme}`}> {btnHideTaskText}</button>
                     <img src={checkboxIcon} className='icon--setting'></img>
                 </div>
-                <div className='clear btns-con--setting'
+                <div className={`clear btns-con--setting ${theme}`}
                     onClick={clearLocalStorage}
                     onMouseEnter={addWarningOnClearStorageHover}
                     onMouseLeave={removeWarningOnClearStorageHover}>
                     <label className={`clear-storage label ${clearLabelClass}`}>{btnClearStorageLabel}</label>
-                    <button className='clear-btn btn--setting'>clear</button>
+                    <button className={`clear-btn btn--setting ${theme}`}>clear</button>
                     {isStorageBtnHover
                         ? <img src={storageWarningIcon} className='icon--setting'></img>
                         : <img src={storageIcon} className='icon--setting'></img>
