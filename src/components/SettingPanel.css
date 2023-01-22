@@ -43,22 +43,19 @@
   width: 12px;
 }
 
-.label,
 .label {
   display: none;
   position: absolute;
-  left: 0%;
+  right: 60px;
   text-align: center;
   font-size: var(--font-xsmall);
   background-color: var(--clr-3);
   color: var(--font-clr-blk);
   padding: 0.3em;
   line-height: 15px;
-  width: 200%;
-  translate: -25% -3em;
+  width: 100px;
 }
 
-.label.show,
 .label.show {
   display: block;
 }
@@ -93,5 +90,15 @@
   }
   .btn--setting {
     font-size: var(--font-medium);
+  }
+  .btns-con--setting:hover {
+    scale: 1;
+  }
+  .label {
+    translate: -2% -4em;
+    inset: 0;
+    left: -0px;
+    width: 100px;
+    height: max-content;
   }
 }
