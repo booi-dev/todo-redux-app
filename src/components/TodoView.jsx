@@ -40,17 +40,17 @@ function TodoView({ todo, toggleTodoView, updateTodo }) {
                     onBlur={handleUpdateTodo}
                 />
                 {/* </div> */}
-                <label htmlFor='note' className='note-label'>note :
-                    <textarea
-                        id='note'
-                        className={`note--view ${theme}`}
-                        value={note}
-                        placeholder='add note ...'
-                        onChange={(e) => setNote(e.currentTarget.value)}
-                        onKeyDown={handlerEnterKey}
-                        onBlur={handleUpdateTodo}
-                    />
-                </label>
+                <label htmlFor="note" className='note-label'>note : </label>
+                <textarea
+                    id="note"
+                    className={`note--view ${theme}`}
+                    value={note}
+                    placeholder='add note ...'
+                    onChange={(e) => setNote(e.currentTarget.value)}
+                    onKeyDown={handlerEnterKey}
+                    onBlur={handleUpdateTodo}
+                />
+
                 <button type='button' onClick={closeTodoView}
                     className={`del-btn--view ${theme}`}
                 >close</button>

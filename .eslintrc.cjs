@@ -27,5 +27,8 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'off',
         "react/prop-types": "off",
         "no-unused-expressions": "off"
+    },
+    "required": {
+        "some": ["nesting", "id"]
     }
 };
