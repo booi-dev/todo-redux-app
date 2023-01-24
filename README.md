@@ -24,8 +24,11 @@ Features to be added. <br>
 #Accessibility. <br>
 #Animation when list is clearing. <br>
 #A search bar. <br>
-#Light color mode. [ADDED] <br>
 #Cloud storage
+
+UPDATE NOTE:
+#Light color mode. [ADDED] <br>
+#Accessibility. [jsx refactor] <br>
 
 view live demo: <br>
 https://booi-dev.github.io/todo-react-app/
