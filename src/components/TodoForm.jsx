@@ -1,19 +1,14 @@
-import { useState, useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { format } from 'date-fns';
-import { useTheme } from './ThemeContext';
-import './todoForm.css'
+import useThemeUpdator from '../hooks/useThemeUpdator';
+import './todoForm.css';
 
-let date = new Date()
-let dateFormated = format(date, 'dd-MMM')
+const date = new Date();
+const dateFormated = format(date, 'dd-MMM');
 
 function TodoInput({ addTodo }) {
-
-    const lightTheme = useTheme()
-    const inputRef = useRef()
-
-    const [theme, setTheme] = useState('dark');
-
+    const inputRef = useRef();
     let todo = {
         id: nanoid(),
         task: "",
@@ -23,20 +18,18 @@ function TodoInput({ addTodo }) {
         priority: "medium",
         group: "dragon",
         isComplete: false,
-    }
+    };
 
     useEffect(() => {
-        inputRef.current.focus()
-    }, [])
+        inputRef.current.focus();
+    }, []);
 
-    useEffect(() => {
-        lightTheme ? setTheme('light') : setTheme('dark')
-    }, [lightTheme])
+    const theme = useThemeUpdator();
 
-    const inputHandler = function (e) {
+    const inputHandler = function () {
         // initialTodo = { ...initialTodo, name: e.target.value }
-        todo = { ...todo, task: inputRef.current.value }
-    }
+        todo = { ...todo, task: inputRef.current.value };
+    };
 
     const clearInputVal = function () {
         todo = {
@@ -44,38 +37,37 @@ function TodoInput({ addTodo }) {
             id: nanoid(),
             complete: false,
             task: ""
-        }
-        inputRef.current.value = ''
-    }
+        };
+        inputRef.current.value = '';
+    };
 
     const submitHandler = function (e) {
         e.preventDefault();
-        addTodo(todo)
-        clearInputVal()
-    }
+        addTodo(todo);
+        clearInputVal();
+    };
 
     const enterHandler = function (e) {
-        e.key === "Enter" && submitHandler(e)
-    }
+        /* eslint-disable-next-line no-unused-expressions */
+        e.key === "Enter" && submitHandler(e);
+    };
 
     return (
-        <>
-            <form
-                onSubmit={submitHandler}
-                className='form'
-            >
-                <input
-                    className={`input--form ${theme}`}
-                    ref={inputRef}
-                    onChange={inputHandler}
-                    onKeyDown={enterHandler}
-                    placeholder="add note"
-                    required
-                />
-                <button type='submit' className={`sub-btn--form ${theme}`}>add</button>
-            </form>
-        </>
-    )
+        <form
+            onSubmit={submitHandler}
+            className='form'
+        >
+            <input
+                className={`input--form ${theme}`}
+                ref={inputRef}
+                onChange={inputHandler}
+                onKeyDown={enterHandler}
+                placeholder="add note"
+                required
+            />
+            <button type='submit' className={`sub-btn--form ${theme}`}>add</button>
+        </form>
+    );
 
 }
 

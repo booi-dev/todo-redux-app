@@ -1,45 +1,40 @@
-import { useState, useEffect } from 'react'
-import TodoView from './TodoView'
-import './Todo.css'
-
+import { useCallback, useState } from 'react';
+import TodoView from './TodoView';
 import deleteIcon from '../assets/delete.png';
 import deleteIconWarning from '../assets/delete-warn.png';
+import useThemeUpdator from '../hooks/useThemeUpdator';
 
-import { useTheme } from './ThemeContext';
+import './Todo.css';
 
 function Todo(props) {
 
     const { todo, deleteTodo, toggleCompleteStatus, updateTodo } = props;
 
-    const lightTheme = useTheme()
-    const [theme, setTheme] = useState('dark');
-
     const [btnClass, setBtnClass] = useState('del-btn--todo');
     const [delBtnWarning, setSelBtnWarning] = useState(false);
     const [todoAnimClass, setTodoAnimClass] = useState('');
 
-    const [todoView, setTodoView] = useState(false)
+    const [todoView, setTodoView] = useState(false);
 
-    useEffect(() => {
-        lightTheme ? setTheme('light') : setTheme('dark')
-    }, [lightTheme])
+    const theme = useThemeUpdator();
 
     const handleDelBtnClick = function () {
-        setTodoAnimClass('vanishing-anim')
-        setTimeout(() => { deleteTodo(todo.id) }, 1000);
-    }
+        setTodoAnimClass('vanishing-anim');
+        setTimeout(() => { deleteTodo(todo.id); }, 1000);
+    };
 
     const handleCheckboxOnChange = function () {
-        toggleCompleteStatus(todo.id)
-    }
+        toggleCompleteStatus(todo.id);
+    };
 
-    const toggleTodoView = function () {
-        setTodoView(!todoView)
-    }
+    const toggleTodoView = useCallback(() => {
+        setTodoView(!todoView);
+    });
 
     const handleEnterForTask = function (e) {
-        e.key === "Enter" && toggleTodoView()
-    }
+        /* eslint-disable-next-line no-unused-expressions */
+        e.key === "Enter" && toggleTodoView();
+    };
 
     return (
         <>
@@ -55,24 +50,25 @@ function Todo(props) {
                         onChange={handleCheckboxOnChange}
                         checked={todo.isComplete}
                     />
-                    <h1
+                    <button type='button'
                         tabIndex={0}
                         className={`task--todo ${todoAnimClass}`}
                         onClick={toggleTodoView}
                         onKeyDown={handleEnterForTask}
                     >
                         {todo.task}
-                    </h1>
+                    </button>
                 </div>
                 <button
+                    type='button'
                     className={btnClass}
                     onClick={handleDelBtnClick}
                     onMouseEnter={() => setSelBtnWarning(true)}
                     onMouseLeave={() => setSelBtnWarning(false)}
                 >
                     {delBtnWarning
-                        ? <img src={deleteIconWarning} className='del-icon-warning--todo' />
-                        : <img src={deleteIcon} />}
+                        ? <img src={deleteIconWarning} alt="delete button" className='del-icon-warning--todo' />
+                        : <img src={deleteIcon} alt="delete button" />}
                 </button>
             </div>
             {todoView && <TodoView todo={todo}
@@ -80,7 +76,7 @@ function Todo(props) {
                 updateTodo={updateTodo}
             />}
         </>
-    )
+    );
 }
 
 export default Todo;

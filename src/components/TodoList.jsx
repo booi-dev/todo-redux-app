@@ -1,5 +1,5 @@
 import Todo from "./Todo";
-import './TodoList.css'
+import './TodoList.css';
 
 function TodoList(props) {
     const { todos, deleteTodo, toggleCompleteStatus, updateTodo } = props;
@@ -15,7 +15,7 @@ function TodoList(props) {
                 />
             ))}
         </ul>
-    )
+    );
 }
 
 export default TodoList;

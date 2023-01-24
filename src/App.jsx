@@ -1,93 +1,86 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useCallback } from 'react';
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
-import SettingPanel from "./components/SettingPanel"
-import { useTheme } from './components/ThemeContext';
+import SettingPanel from "./components/SettingPanel";
+import useThemeUpdator from './hooks/useThemeUpdator';
 
-import './App.css'
+import './App.css';
 
 function App() {
-
-  const lightTheme = useTheme()
-  const [theme, setTheme] = useState('dark');
 
   const [todos, setTodos] = useState([]);
 
   const getTodoDataFromStorage = function () {
-    let todoList = []
-    for (let i = 0; i < localStorage.length; i++) {
-      let key = localStorage.key(i)
-      let item = localStorage.getItem(key)
-      let todo = JSON.parse(item)
-      todoList.push(todo)
-    }
+    const todoList = [];
+    const localStorageArr = Object.values(localStorage);
+    localStorageArr.forEach(data => {
+      const todo = JSON.parse(data);
+      todoList.push(todo);
+    });
+
     todoList.sort((a, b) => (a.dateOfCreation < b.dateOfCreation) ? 1 : -1);
     return todoList;
-  }
+  };
 
-  let todoData = getTodoDataFromStorage()
+  const todoData = getTodoDataFromStorage();
 
   useEffect(() => {
     setTodos(todoData);
   }, []);
 
-  useEffect(() => {
-    lightTheme ? setTheme('light') : setTheme('dark')
-  }, [lightTheme])
+  const theme = useThemeUpdator();
 
-  const addTodo = function (todo) {
-    localStorage.setItem(`${todo.id}`, JSON.stringify(todo))
+  const addTodo = useCallback((todo) => {
+    localStorage.setItem(`${todo.id}`, JSON.stringify(todo));
     setTodos((currTodo) => [todo, ...currTodo]);
-  }
+  });
 
-  const deleteTodo = function (todoId) {
-    setTodos((currTodo) => currTodo.filter((item) => item.id != todoId));
-    localStorage.removeItem(todoId)
-  }
+  const deleteTodo = useCallback((todoId) => {
+    setTodos((currTodo) => currTodo.filter((item) => item.id !== todoId));
+    localStorage.removeItem(todoId);
+  });
 
-  const toggleCompleteStatus = function (todoId) {
+  const toggleCompleteStatus = useCallback((todoId) => {
     setTodos(
       todos.map(todo => {
         if (todo.id === todoId) {
-          let updatedTodo = { ...todo, isComplete: !todo.isComplete }
-          localStorage.setItem(todoId, JSON.stringify(updatedTodo))
+          const updatedTodo = { ...todo, isComplete: !todo.isComplete };
+          localStorage.setItem(todoId, JSON.stringify(updatedTodo));
           return updatedTodo;
         }
         return todo;
       })
     );
-  }
+  });
 
-  const updateTodo = function (updatedTodo) {
+  const updateTodo = useCallback((updatedTodo) => {
     setTodos(
       todos.map(todo => {
         if (todo.id === updatedTodo.id) {
-          localStorage.setItem(todo.id, JSON.stringify(updatedTodo))
+          localStorage.setItem(todo.id, JSON.stringify(updatedTodo));
           return updatedTodo;
         }
         return todo;
       })
     );
-  }
+  });
 
-  const clearAllTodo = function () {
-    setTodos([])
-  }
+  const clearAllTodo = useCallback(() => {
+    setTodos([]);
+  });
 
-  const [hideCompletedTasks, setHideCompletedTasks] = useState(false)
+  const [hideCompletedTasks, setHideCompletedTasks] = useState(false);
 
-  const toggleCompletedTasks = function () {
-    setHideCompletedTasks(!hideCompletedTasks)
+  const toggleCompletedTasks = useCallback(() => {
+    setHideCompletedTasks(!hideCompletedTasks);
     if (!hideCompletedTasks) {
-      let filteredTodos = todos.filter(todo => {
-        return todo.isComplete === false;
-      })
-      setTodos(filteredTodos)
+      const filteredTodos = todos.filter(todo => todo.isComplete === false);
+      setTodos(filteredTodos);
     } else {
-      let todoData = getTodoDataFromStorage()
-      setTodos(todoData)
+      const data = getTodoDataFromStorage();
+      setTodos(data);
     }
-  }
+  });
 
   return (
     <div className={`app-container ${theme}`}>
@@ -109,7 +102,7 @@ function App() {
         />
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
