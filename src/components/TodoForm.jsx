@@ -7,7 +7,7 @@ import './todoForm.css';
 const date = new Date();
 const dateFormated = format(date, 'dd-MMM');
 
-function TodoInput({ addTodo }) {
+function TodoForm({ addTodo }) {
     const inputRef = useRef();
     let todo = {
         id: nanoid(),
@@ -26,9 +26,8 @@ function TodoInput({ addTodo }) {
 
     const theme = useThemeUpdator();
 
-    const inputHandler = function () {
-        // initialTodo = { ...initialTodo, name: e.target.value }
-        todo = { ...todo, task: inputRef.current.value };
+    const inputHandler = function (e) {
+        todo = { ...todo, task: e.target.value };
     };
 
     const clearInputVal = function () {
@@ -71,4 +70,4 @@ function TodoInput({ addTodo }) {
 
 }
 
-export default TodoInput;
+export default TodoForm;

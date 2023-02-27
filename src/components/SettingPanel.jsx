@@ -12,6 +12,7 @@ import { useTheme, useUpdateTheme } from '../context/ThemeContext';
 // import useThemeUpdator from '../hooks/useThemeUpdator';
 
 import './SettingPanel.css';
+import { findNonSerializableValue } from '@reduxjs/toolkit';
 
 function SettingPanel({ toggleCompletedTasks, clearAllTodo, todoList, deleteTodo }) {
 
