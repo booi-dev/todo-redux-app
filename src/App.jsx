@@ -1,9 +1,8 @@
 import { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addTodo, deleteTodo, clearTodo, toggleComplete } from './features/todo/todoSlice';
+import { addTodo, deleteTodo, clearTodo, toggleComplete, updateNote } from './features/todo/todoSlice';
 import useLocalStorage from './hooks/useLocalStorage';
 import sortArray from './utils/sort';
-
 
 import TodoForm from "./features/todo/TodoForm";
 import TodoList from "./features/todo/TodoList";
@@ -17,7 +16,7 @@ function App() {
   const todoData = useSelector((state) => state.todo.todos);
   const dispatch = useDispatch();
 
-  const [getDataFromLS, addDataToLS, deleteDataFromLS, clearDataLS] = useLocalStorage();
+  const [getDataFromLS, addDataToLS, deleteDataFromLS, clearDataLS, toggleDataCompleteLS] = useLocalStorage();
   const theme = useThemeUpdator();
 
   const todos = sortArray(todoData);
@@ -33,18 +32,8 @@ function App() {
   });
 
   const toggleCompleteStatus = useCallback((todo) => {
-    // setTodos(
-    //   todos.map(todo => {
-    //     if (todo.id === todoId) {
-    //       const updatedTodo = { ...todo, isComplete: !todo.isComplete };
-    //       localStorage.setItem(todoId, JSON.stringify(updatedTodo));
-    //       return updatedTodo;
-    //     }
-    //     return todo;
-    //   })
-    // );
-    console.log("hula");
     dispatch(toggleComplete(todo));
+    toggleDataCompleteLS(todo);
   });
 
   const updateTodo = useCallback((updatedTodo) => {
@@ -61,7 +50,7 @@ function App() {
 
   const clearAllTodo = useCallback(() => {
     dispatch(clearTodo());
-    // clearDataLS();
+    clearDataLS();
   });
 
   const [hideCompletedTasks, setHideCompletedTasks] = useState(false);

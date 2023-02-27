@@ -26,7 +26,15 @@ function useLocalStorage() {
         localStorage.clear();
     };
 
-    return [getDataFromLS, addDataToLS, deleteDataFromLS, clearDataLS];
+    const toggleDataCompleteLS = (d) => {
+        console.log(d.id);
+        localStorage.setItem(d.id, JSON.stringify({
+            ...d,
+            isComplete: !d.isComplete
+        }));
+    };
+
+    return [getDataFromLS, addDataToLS, deleteDataFromLS, clearDataLS, toggleDataCompleteLS];
 }
 
 export default useLocalStorage;
