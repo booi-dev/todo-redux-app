@@ -19,11 +19,14 @@ function useLocalStorage() {
     };
 
     const deleteDataFromLS = (d) => {
-        console.log(d.id);
         localStorage.removeItem(d.id);
     };
 
-    return [getDataFromLS, addDataToLS, deleteDataFromLS];
+    const clearDataLS = () => {
+        localStorage.clear();
+    };
+
+    return [getDataFromLS, addDataToLS, deleteDataFromLS, clearDataLS];
 }
 
 export default useLocalStorage;

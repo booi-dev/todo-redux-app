@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import sortArray from "../../utils/sort";
 
 const dataList = [];
 Object.values(localStorage).forEach((d) => {
@@ -7,8 +6,13 @@ Object.values(localStorage).forEach((d) => {
 });
 
 const initialState = {
-    todos: sortArray(dataList) || [],
+    todos: dataList || [],
 };
+
+
+// toggleComplete 
+// updateTodo or updateNote 
+// clearAll
 
 const todoSlice = createSlice({
     name: "todo",
@@ -18,10 +22,16 @@ const todoSlice = createSlice({
             state.todos.push(action.payload);
         },
         deleteTodo: (state, action) => {
-            state.todos = state.todos.filter((t) => t.id !== action.payload.id);
-        }
+            /* eslint-disable-next-line */
+            state.todos = [] = state.todos.filter((t) => t.id !== action.payload.id);
+        },
+        clearTodo: (state) => {
+            /* eslint-disable-next-line */
+            state.todos = []
+        },
+
     }
 });
 
 export default todoSlice.reducer;
-export const { addTodo, deleteTodo } = todoSlice.actions;
+export const { addTodo, deleteTodo, clearTodo } = todoSlice.actions;

@@ -43,10 +43,10 @@ function SettingPanel({ toggleCompletedTasks, clearAllTodo, todoList, deleteTodo
     };
 
     const clearLocalStorage = function () {
-        localStorage.clear();
-        todoList.forEach((todo) => {
-            deleteTodo(todo.id);
-        });
+        // localStorage.clear();
+        // todoList.forEach((todo) => {
+        //     deleteTodo(todo.id);
+        // });
         clearAllTodo();
     };
 

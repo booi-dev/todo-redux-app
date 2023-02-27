@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addTodo, deleteTodo } from './features/todo/todoSlice';
+import { addTodo, deleteTodo, clearTodo } from './features/todo/todoSlice';
 import useLocalStorage from './hooks/useLocalStorage';
 import sortArray from './utils/sort';
 
@@ -14,16 +14,13 @@ import './App.css';
 
 function App() {
 
-  const todos = useSelector((state) => state.todo.todos);
+  const todoData = useSelector((state) => state.todo.todos);
   const dispatch = useDispatch();
 
-  console.log(todos);
-
-  const [getDataFromLS, addDataToLS, deleteDataFromLS] = useLocalStorage();
-
+  const [getDataFromLS, addDataToLS, deleteDataFromLS, clearDataLS] = useLocalStorage();
   const theme = useThemeUpdator();
 
-  // const [todos, setTodos] = useState(todoData);
+  const todos = sortArray(todoData);
 
   const handleAddTodo = useCallback((todo) => {
     addDataToLS(todo);
@@ -61,7 +58,8 @@ function App() {
   });
 
   const clearAllTodo = useCallback(() => {
-    // setTodos([]);
+    dispatch(clearTodo());
+    // clearDataLS();
   });
 
   const [hideCompletedTasks, setHideCompletedTasks] = useState(false);
@@ -76,11 +74,6 @@ function App() {
       // setTodos(data);
     }
   });
-
-  useEffect(() => {
-
-
-  }, []);
 
   return (
     <div className={`app-container ${theme}`}>
@@ -97,8 +90,8 @@ function App() {
         <SettingPanel
           // toggleCompletedTasks={toggleCompletedTasks}
           todoList={todos}
-        // handleDeleteTodo={handleDeleteTodo}
-        // clearAllTodo={clearAllTodo}
+          // handleDeleteTodo={handleDeleteTodo}
+          clearAllTodo={clearAllTodo}
         />
       </div>
     </div>

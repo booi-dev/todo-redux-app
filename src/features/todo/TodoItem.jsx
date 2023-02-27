@@ -19,9 +19,8 @@ function TodoView(props) {
     const theme = useThemeUpdator();
 
     const handleDelBtnClick = function (tobeDeleteTodo) {
-        // setTodoAnimClass('vanishing-anim');
-        // setTimeout(() => { handleDeleteTodo(tobeDeleteTodo); }, 1000);
-        handleDeleteTodo(tobeDeleteTodo);
+        setTodoAnimClass('vanishing-anim');
+        setTimeout(() => { handleDeleteTodo(tobeDeleteTodo); }, 1000);
     };
 
     const handleCheckboxOnChange = function () {
