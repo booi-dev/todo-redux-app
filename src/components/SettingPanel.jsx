@@ -2,6 +2,11 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 
 import { useState, useEffect } from 'react';
+
+import { useDispatch } from 'react-redux';
+import useLocalStorage from '../hooks/useLocalStorage';
+import { clearTodo } from '../features/todo/todoSlice';
+
 import checkboxIcon from '../assets/checkbox.png';
 import storageIcon from '../assets/storage.png';
 import storageWarningIcon from '../assets/storage-warning.png';
@@ -9,13 +14,13 @@ import themeSwitchDark from '../assets/theme-switch-dark.png';
 import themeSwitchLight from '../assets/theme-switch-light.png';
 
 import { useTheme, useUpdateTheme } from '../context/ThemeContext';
-// import useThemeUpdator from '../hooks/useThemeUpdator';
 
 import './SettingPanel.css';
 
-// import { findNonSerializableValue } from '@reduxjs/toolkit';
+function SettingPanel({ toggleCompletedTasks }) {
 
-function SettingPanel({ toggleCompletedTasks, clearAllTodo }) {
+    const dispatch = useDispatch();
+    const [, , , , , clearDataLS] = useLocalStorage();
 
     const lightTheme = useTheme();
     const updateTheme = useUpdateTheme();
@@ -34,6 +39,11 @@ function SettingPanel({ toggleCompletedTasks, clearAllTodo }) {
     const btnHideTaskLabel = isCompletedTaskHide ? 'show completeed task(s)' : 'hide completeed task(s)';
     const btnClearStorageLabel = 'clear local storage';
 
+    const clearAllTodo = () => {
+        dispatch(clearTodo());
+        clearDataLS();
+    };
+
     useEffect(() => {
         lightTheme ? setTheme('light') : setTheme('dark');
     }, [lightTheme]);
@@ -41,10 +51,6 @@ function SettingPanel({ toggleCompletedTasks, clearAllTodo }) {
     const toggleCompletedTaskHide = function () {
         setIsCompletedTaskHide(!isCompletedTaskHide);
         toggleCompletedTasks();
-    };
-
-    const clearLocalStorage = function () {
-        clearAllTodo();
     };
 
     const addWarningOnClearStorageHover = function () {
@@ -77,7 +83,7 @@ function SettingPanel({ toggleCompletedTasks, clearAllTodo }) {
             <div role="button"
                 tabIndex={0}
                 className={`clear btns-con--setting ${theme}`}
-                onClick={clearLocalStorage}
+                onClick={clearAllTodo}
                 onMouseEnter={addWarningOnClearStorageHover}
                 onMouseLeave={removeWarningOnClearStorageHover}>
                 <span className={`clear-storage label ${clearLabelClass}`}>{btnClearStorageLabel}</span>
