@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 import { createSlice } from "@reduxjs/toolkit";
 
 const dataList = [];
@@ -9,10 +11,7 @@ const initialState = {
     todos: dataList || [],
 };
 
-
-// toggleComplete 
 // updateTodo or updateNote 
-// clearAll
 
 const todoSlice = createSlice({
     name: "todo",
@@ -22,16 +21,26 @@ const todoSlice = createSlice({
             state.todos.push(action.payload);
         },
         deleteTodo: (state, action) => {
-            /* eslint-disable-next-line */
-            state.todos = [] = state.todos.filter((t) => t.id !== action.payload.id);
+            state.todos = state.todos.filter((t) => t.id !== action.payload.id);
         },
         clearTodo: (state) => {
-            /* eslint-disable-next-line */
-            state.todos = []
+            state.todos = [];
+        },
+        toggleComplete: (state, action) => {
+            console.log(action.payload);
+            state.todos = state.todos.map((t) => {
+                if (t.id === action.payload.id) {
+                    return {
+                        ...t,
+                        isComplete: !t.isComplete
+                    };
+                }
+                return t;
+            });
         },
 
     }
 });
 
 export default todoSlice.reducer;
-export const { addTodo, deleteTodo, clearTodo } = todoSlice.actions;
+export const { addTodo, deleteTodo, clearTodo, toggleComplete } = todoSlice.actions;

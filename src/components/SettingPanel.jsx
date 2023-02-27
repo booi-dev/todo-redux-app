@@ -12,9 +12,10 @@ import { useTheme, useUpdateTheme } from '../context/ThemeContext';
 // import useThemeUpdator from '../hooks/useThemeUpdator';
 
 import './SettingPanel.css';
-import { findNonSerializableValue } from '@reduxjs/toolkit';
 
-function SettingPanel({ toggleCompletedTasks, clearAllTodo, todoList, deleteTodo }) {
+// import { findNonSerializableValue } from '@reduxjs/toolkit';
+
+function SettingPanel({ toggleCompletedTasks, clearAllTodo }) {
 
     const lightTheme = useTheme();
     const updateTheme = useUpdateTheme();
@@ -43,10 +44,6 @@ function SettingPanel({ toggleCompletedTasks, clearAllTodo, todoList, deleteTodo
     };
 
     const clearLocalStorage = function () {
-        // localStorage.clear();
-        // todoList.forEach((todo) => {
-        //     deleteTodo(todo.id);
-        // });
         clearAllTodo();
     };
 

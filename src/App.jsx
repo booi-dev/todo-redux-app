@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addTodo, deleteTodo, clearTodo } from './features/todo/todoSlice';
+import { addTodo, deleteTodo, clearTodo, toggleComplete } from './features/todo/todoSlice';
 import useLocalStorage from './hooks/useLocalStorage';
 import sortArray from './utils/sort';
 
@@ -32,7 +32,7 @@ function App() {
     dispatch(deleteTodo(todo));
   });
 
-  const toggleCompleteStatus = useCallback((todoId) => {
+  const toggleCompleteStatus = useCallback((todo) => {
     // setTodos(
     //   todos.map(todo => {
     //     if (todo.id === todoId) {
@@ -43,6 +43,8 @@ function App() {
     //     return todo;
     //   })
     // );
+    console.log("hula");
+    dispatch(toggleComplete(todo));
   });
 
   const updateTodo = useCallback((updatedTodo) => {
@@ -84,12 +86,12 @@ function App() {
         <TodoList
           todos={todos}
           handleDeleteTodo={handleDeleteTodo}
-          // toggleCompleteStatus={toggleCompleteStatus}
+          toggleCompleteStatus={toggleCompleteStatus}
           updateTodo={updateTodo}
         />
         <SettingPanel
           // toggleCompletedTasks={toggleCompletedTasks}
-          todoList={todos}
+          // todoList={todos}
           // handleDeleteTodo={handleDeleteTodo}
           clearAllTodo={clearAllTodo}
         />

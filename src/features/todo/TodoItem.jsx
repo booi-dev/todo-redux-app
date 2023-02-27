@@ -18,13 +18,13 @@ function TodoView(props) {
 
     const theme = useThemeUpdator();
 
-    const handleDelBtnClick = function (tobeDeleteTodo) {
+    const handleDelBtnClick = (tobeDeleteTodo) => {
         setTodoAnimClass('vanishing-anim');
         setTimeout(() => { handleDeleteTodo(tobeDeleteTodo); }, 1000);
     };
 
-    const handleCheckboxOnChange = function () {
-        toggleCompleteStatus(todo.id);
+    const handleCheckboxOnChange = (targetTodo) => {
+        toggleCompleteStatus(targetTodo);
     };
 
     const toggleTodoView = useCallback(() => {
@@ -47,7 +47,7 @@ function TodoView(props) {
                     <input
                         type="checkbox"
                         className='checkbox--todo'
-                        onChange={handleCheckboxOnChange}
+                        onChange={() => handleCheckboxOnChange(todo)}
                         checked={todo.isComplete}
                     />
                     <button type='button'
