@@ -11,7 +11,7 @@ export function useUpdateTheme() {
 }
 
 function ThemeProvider({ children }) {
-    const [lightTheme, setLightTheme] = useState(false);
+    const [lightTheme, setLightTheme] = useState(true);
 
     const toggleTheme = function () {
         setLightTheme(prevTheme => !prevTheme);

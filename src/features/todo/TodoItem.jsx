@@ -8,7 +8,7 @@ import './TodoItem.css';
 
 function TodoView(props) {
 
-    const { todo, deleteTodo, toggleCompleteStatus, updateTodo } = props;
+    const { todo, handleDeleteTodo, toggleCompleteStatus, updateTodo } = props;
 
     const [btnClass, setBtnClass] = useState('del-btn--todo');
     const [delBtnWarning, setSelBtnWarning] = useState(false);
@@ -18,9 +18,10 @@ function TodoView(props) {
 
     const theme = useThemeUpdator();
 
-    const handleDelBtnClick = function () {
-        setTodoAnimClass('vanishing-anim');
-        setTimeout(() => { deleteTodo(todo.id); }, 1000);
+    const handleDelBtnClick = function (tobeDeleteTodo) {
+        // setTodoAnimClass('vanishing-anim');
+        // setTimeout(() => { handleDeleteTodo(tobeDeleteTodo); }, 1000);
+        handleDeleteTodo(tobeDeleteTodo);
     };
 
     const handleCheckboxOnChange = function () {
@@ -62,7 +63,7 @@ function TodoView(props) {
                 <button
                     type='button'
                     className={btnClass}
-                    onClick={handleDelBtnClick}
+                    onClick={() => handleDelBtnClick(todo)}
                     onMouseEnter={() => setSelBtnWarning(true)}
                     onMouseLeave={() => setSelBtnWarning(false)}
                 >

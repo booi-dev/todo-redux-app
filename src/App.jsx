@@ -17,18 +17,22 @@ function App() {
   const todos = useSelector((state) => state.todo.todos);
   const dispatch = useDispatch();
 
+  console.log(todos);
+
   const [getDataFromLS, addDataToLS, deleteDataFromLS] = useLocalStorage();
 
   const theme = useThemeUpdator();
 
+  // const [todos, setTodos] = useState(todoData);
+
   const handleAddTodo = useCallback((todo) => {
-    // console.log("sdf")
     addDataToLS(todo);
     dispatch(addTodo(todo));
   });
 
   const handleDeleteTodo = useCallback((todo) => {
     deleteDataFromLS(todo);
+    dispatch(deleteTodo(todo));
   });
 
   const toggleCompleteStatus = useCallback((todoId) => {
@@ -75,13 +79,6 @@ function App() {
 
   useEffect(() => {
 
-    // const dataFromLS = getDataFromLS();
-    // sortArray(getDataFromLS())
-
-    // getDataFromLS()
-    //   .forEach(todo => {
-    //     dispatch(addTodo(todo));
-    //   });
 
   }, []);
 
@@ -94,14 +91,14 @@ function App() {
         <TodoList
           todos={todos}
           handleDeleteTodo={handleDeleteTodo}
-          toggleCompleteStatus={toggleCompleteStatus}
+          // toggleCompleteStatus={toggleCompleteStatus}
           updateTodo={updateTodo}
         />
         <SettingPanel
-          toggleCompletedTasks={toggleCompletedTasks}
+          // toggleCompletedTasks={toggleCompletedTasks}
           todoList={todos}
-          handleDeleteTodo={handleDeleteTodo}
-          clearAllTodo={clearAllTodo}
+        // handleDeleteTodo={handleDeleteTodo}
+        // clearAllTodo={clearAllTodo}
         />
       </div>
     </div>

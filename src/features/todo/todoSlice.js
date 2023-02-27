@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import sortArray from "../../utils/sort";
 
 const dataList = [];
 Object.values(localStorage).forEach((d) => {
@@ -6,7 +7,7 @@ Object.values(localStorage).forEach((d) => {
 });
 
 const initialState = {
-    todos: dataList || [],
+    todos: sortArray(dataList) || [],
 };
 
 const todoSlice = createSlice({
@@ -17,7 +18,7 @@ const todoSlice = createSlice({
             state.todos.push(action.payload);
         },
         deleteTodo: (state, action) => {
-            state.todos.filter((task) => task.id !== action.payload.id);
+            state.todos = state.todos.filter((t) => t.id !== action.payload.id);
         }
     }
 });
