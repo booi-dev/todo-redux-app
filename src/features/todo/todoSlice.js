@@ -30,7 +30,7 @@ const todoSlice = createSlice({
             state.todos = state.todos.filter((t) => t.id !== action.payload.id);
         },
         toggleComplete: (state, action) => {
-            console.log('toggle store', action.payload);
+            console.log('toggle store', action.payload.task);
             state.todos = state.todos.map((t) => {
                 if (t.id === action.payload.id) {
                     return {

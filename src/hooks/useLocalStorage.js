@@ -1,20 +1,12 @@
-import { useState, useEffect } from "react";
-
 function useLocalStorage() {
 
-    const [data, setData] = useState([]);
-
-    useEffect(() => () => {
+    const getDataFromLS = () => {
+        console.log('get from LS');
         const dataList = [];
         Object.values(localStorage).forEach((d) => {
             dataList.push(JSON.parse(d));
         });
-        setData(dataList);
-    }, []);
-
-    const getDataFromLS = () => {
-        console.log('get from LS');
-        return data;
+        return dataList;
     };
 
     const addDataToLS = (d) => {
@@ -27,9 +19,8 @@ function useLocalStorage() {
         localStorage.removeItem(d.id);
     };
 
-
     const toggleDataCompleteLS = (d) => {
-        console.log('toggle LS', d);
+        console.log('toggle LS', d.task);
         localStorage.setItem(d.id, JSON.stringify({
             ...d,
             isComplete: !d.isComplete

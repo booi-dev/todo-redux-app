@@ -26,7 +26,7 @@ function App() {
   const toggleFilter = useCallback(() => {
     setHideCompletedTasks(!hideCompletedTasks);
     if (!hideCompletedTasks) {
-      const filteredTodos = todos.filter(todo => todo.isComplete === false);
+      const filteredTodos = getDataFromLS().filter(todo => todo.isComplete === false);
       dispatch(replaceTodo(filteredTodos));
     } else {
       const data = getDataFromLS();
@@ -39,9 +39,7 @@ function App() {
       <div className='App'>
         <TodoForm />
         <TodoList todos={todos} />
-        <SettingPanel
-          toggleFilter={toggleFilter}
-        />
+        <SettingPanel toggleFilter={toggleFilter} />
       </div>
     </div>
   );
