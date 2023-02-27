@@ -1,5 +1,8 @@
 import { useState, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { replaceTodo } from './features/todo/todoSlice';
+import useLocalStorage from './hooks/useLocalStorage';
+
 import sortArray from './utils/sort';
 import TodoForm from "./features/todo/TodoForm";
 import TodoList from "./features/todo/TodoList";
@@ -11,21 +14,23 @@ import './App.css';
 function App() {
 
   const todoData = useSelector((state) => state.todo.todos);
+  const dispatch = useDispatch();
+
+  const [getDataFromLS] = useLocalStorage();
+  const todos = sortArray(todoData);
 
   const theme = useThemeUpdator();
 
-  const todos = sortArray(todoData);
-
   const [hideCompletedTasks, setHideCompletedTasks] = useState(false);
 
-  const toggleCompletedTasks = useCallback(() => {
+  const toggleFilter = useCallback(() => {
     setHideCompletedTasks(!hideCompletedTasks);
     if (!hideCompletedTasks) {
       const filteredTodos = todos.filter(todo => todo.isComplete === false);
-      // setTodos(filteredTodos);
+      dispatch(replaceTodo(filteredTodos));
     } else {
       const data = getDataFromLS();
-      // setTodos(data);
+      dispatch(replaceTodo(data));
     }
   });
 
@@ -35,7 +40,7 @@ function App() {
         <TodoForm />
         <TodoList todos={todos} />
         <SettingPanel
-        // toggleCompletedTasks={toggleCompletedTasks}
+          toggleFilter={toggleFilter}
         />
       </div>
     </div>

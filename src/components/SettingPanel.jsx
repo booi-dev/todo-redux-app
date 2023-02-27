@@ -17,7 +17,7 @@ import { useTheme, useUpdateTheme } from '../context/ThemeContext';
 
 import './SettingPanel.css';
 
-function SettingPanel({ toggleCompletedTasks }) {
+function SettingPanel({ toggleFilter }) {
 
     const dispatch = useDispatch();
     const [, , , , , clearDataLS] = useLocalStorage();
@@ -50,7 +50,7 @@ function SettingPanel({ toggleCompletedTasks }) {
 
     const toggleCompletedTaskHide = function () {
         setIsCompletedTaskHide(!isCompletedTaskHide);
-        toggleCompletedTasks();
+        toggleFilter();
     };
 
     const addWarningOnClearStorageHover = function () {
