@@ -1,4 +1,4 @@
-import Todo from "./TodoItem";
+import TodoItem from "./TodoItem";
 import './TodoList.css';
 
 function TodoList(props) {
@@ -6,7 +6,7 @@ function TodoList(props) {
     return (
         <ul className="todo-list">
             {todos.map(todo => (
-                <Todo
+                <TodoItem
                     key={todo.id}
                     todo={todo}
                     deleteTodo={deleteTodo}

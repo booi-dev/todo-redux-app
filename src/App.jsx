@@ -14,71 +14,50 @@ import './App.css';
 
 function App() {
 
-  const todoDataFromStore = useSelector((state) => state.todo.todos);
+  const todos = useSelector((state) => state.todo.todos);
   const dispatch = useDispatch();
 
   const [getDataFromLS, addDataToLS, deleteDataFromLS] = useLocalStorage();
 
-  const dataFromLS = getDataFromLS();
-
-  const [todos, setTodos] = useState(dataFromLS);
-
-  console.log(dataFromLS);
-
-  // const getTodoDataFromStorage = function () {
-  //   const todoList = [];
-  //   const localStorageArr = Object.values(localStorage);
-
-  //   localStorageArr.forEach(data => {
-  //     const todo = JSON.parse(data);
-  //     todoList.push(todo);
-  //   });
-
-  //   todoList.sort((a, b) => (a.dateOfCreation < b.dateOfCreation) ? 1 : -1);
-  //   return todoList;
-  // };
-
-
   const theme = useThemeUpdator();
 
   const handleAddTodo = useCallback((todo) => {
-    // localStorage.setItem(`${todo.id}`, JSON.stringify(todo));
+    // console.log("sdf")
     addDataToLS(todo);
-    setTodos((currTodo) => [todo, ...currTodo]);
+    dispatch(addTodo(todo));
   });
 
   const handleDeleteTodo = useCallback((todo) => {
-    // setTodos((currTodo) => currTodo.filter((item) => item.id !== todoId));
     deleteDataFromLS(todo);
   });
 
   const toggleCompleteStatus = useCallback((todoId) => {
-    setTodos(
-      todos.map(todo => {
-        if (todo.id === todoId) {
-          const updatedTodo = { ...todo, isComplete: !todo.isComplete };
-          localStorage.setItem(todoId, JSON.stringify(updatedTodo));
-          return updatedTodo;
-        }
-        return todo;
-      })
-    );
+    // setTodos(
+    //   todos.map(todo => {
+    //     if (todo.id === todoId) {
+    //       const updatedTodo = { ...todo, isComplete: !todo.isComplete };
+    //       localStorage.setItem(todoId, JSON.stringify(updatedTodo));
+    //       return updatedTodo;
+    //     }
+    //     return todo;
+    //   })
+    // );
   });
 
   const updateTodo = useCallback((updatedTodo) => {
-    setTodos(
-      todos.map(todo => {
-        if (todo.id === updatedTodo.id) {
-          localStorage.setItem(todo.id, JSON.stringify(updatedTodo));
-          return updatedTodo;
-        }
-        return todo;
-      })
-    );
+    // setTodos(
+    //   todos.map(todo => {
+    //     if (todo.id === updatedTodo.id) {
+    //       localStorage.setItem(todo.id, JSON.stringify(updatedTodo));
+    //       return updatedTodo;
+    //     }
+    //     return todo;
+    //   })
+    // );
   });
 
   const clearAllTodo = useCallback(() => {
-    setTodos([]);
+    // setTodos([]);
   });
 
   const [hideCompletedTasks, setHideCompletedTasks] = useState(false);
@@ -87,17 +66,24 @@ function App() {
     setHideCompletedTasks(!hideCompletedTasks);
     if (!hideCompletedTasks) {
       const filteredTodos = todos.filter(todo => todo.isComplete === false);
-      setTodos(filteredTodos);
+      // setTodos(filteredTodos);
     } else {
       const data = getDataFromLS();
-      setTodos(data);
+      // setTodos(data);
     }
   });
 
   useEffect(() => {
-    setTodos(dataFromLS);
-    // dispatch(addTodo());
-  }, [dataFromLS]);
+
+    // const dataFromLS = getDataFromLS();
+    // sortArray(getDataFromLS())
+
+    // getDataFromLS()
+    //   .forEach(todo => {
+    //     dispatch(addTodo(todo));
+    //   });
+
+  }, []);
 
   return (
     <div className={`app-container ${theme}`}>

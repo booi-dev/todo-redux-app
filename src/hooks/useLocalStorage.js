@@ -7,7 +7,6 @@ function useLocalStorage() {
     useEffect(() => () => {
         const dataList = [];
         Object.values(localStorage).forEach((d) => {
-            // console.log(d)
             dataList.push(JSON.parse(d));
         });
         setData(dataList);

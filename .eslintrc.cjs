@@ -26,7 +26,8 @@ module.exports = {
         'func-names': 'off',
         'react-hooks/exhaustive-deps': 'off',
         "react/prop-types": "off",
-        "no-unused-expressions": "off"
+        "no-unused-expressions": "off",
+        'no-console': 'off',
     },
     // "required": {
     //     "some": ["nesting", "id"]

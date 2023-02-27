@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useState, useEffect } from 'react';
-import './TodoView.css';
+import './TodoExpand.css';
 
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 
 function TodoView({ todo, toggleTodoView, updateTodo }) {
 
@@ -40,16 +40,17 @@ function TodoView({ todo, toggleTodoView, updateTodo }) {
                     onBlur={handleUpdateTodo}
                 />
                 {/* </div> */}
-                <label htmlFor="note" className='note-label'>note : </label>
-                <textarea
-                    id="note"
-                    className={`note--view ${theme}`}
-                    value={note}
-                    placeholder='add note ...'
-                    onChange={(e) => setNote(e.currentTarget.value)}
-                    onKeyDown={handlerEnterKey}
-                    onBlur={handleUpdateTodo}
-                />
+                <label htmlFor="note" className='note-label'>note :
+                    <textarea
+                        id="note"
+                        className={`note--view ${theme}`}
+                        value={note}
+                        placeholder='add note ...'
+                        onChange={(e) => setNote(e.currentTarget.value)}
+                        onKeyDown={handlerEnterKey}
+                        onBlur={handleUpdateTodo}
+                    />
+                </label>
 
                 <button type='button' onClick={closeTodoView}
                     className={`del-btn--view ${theme}`}

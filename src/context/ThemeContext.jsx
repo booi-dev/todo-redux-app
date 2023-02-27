@@ -1,21 +1,21 @@
-import { useState, createContext, useContext } from 'react'
+import { useState, createContext, useContext } from 'react';
 
-const ThemeContext = createContext()
-const ThemeUpdateContext = createContext()
+const ThemeContext = createContext();
+const ThemeUpdateContext = createContext();
 
 export function useTheme() {
-    return useContext(ThemeContext)
+    return useContext(ThemeContext);
 }
 export function useUpdateTheme() {
-    return useContext(ThemeUpdateContext)
+    return useContext(ThemeUpdateContext);
 }
 
 function ThemeProvider({ children }) {
-    const [lightTheme, setLightTheme] = useState(false)
+    const [lightTheme, setLightTheme] = useState(false);
 
     const toggleTheme = function () {
-        setLightTheme(prevTheme => !prevTheme)
-    }
+        setLightTheme(prevTheme => !prevTheme);
+    };
 
     return (
         <ThemeContext.Provider value={lightTheme}>
@@ -23,7 +23,7 @@ function ThemeProvider({ children }) {
                 {children}
             </ThemeUpdateContext.Provider>
         </ThemeContext.Provider>
-    )
+    );
 }
 
 export default ThemeProvider;

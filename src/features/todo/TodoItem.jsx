@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
-// import TodoView from './TodoView';
 import deleteIcon from '../../assets/delete.png';
 import deleteIconWarning from '../../assets/delete-warn.png';
 import useThemeUpdator from '../../hooks/useThemeUpdator';
+import TodoExpand from './TodoExpand';
 
 import './TodoItem.css';
 
@@ -14,7 +14,7 @@ function TodoView(props) {
     const [delBtnWarning, setSelBtnWarning] = useState(false);
     const [todoAnimClass, setTodoAnimClass] = useState('');
 
-    const [todoView, setTodoView] = useState(false);
+    const [isExpand, setIsExpand] = useState(false);
 
     const theme = useThemeUpdator();
 
@@ -28,7 +28,7 @@ function TodoView(props) {
     };
 
     const toggleTodoView = useCallback(() => {
-        setTodoView(!todoView);
+        setIsExpand(!isExpand);
     });
 
     const handleEnterForTask = function (e) {
@@ -71,7 +71,7 @@ function TodoView(props) {
                         : <img src={deleteIcon} alt="delete button" />}
                 </button>
             </div>
-            {todoView && <TodoView todo={todo}
+            {isExpand && <TodoExpand todo={todo}
                 toggleTodoView={toggleTodoView}
                 updateTodo={updateTodo}
             />}
