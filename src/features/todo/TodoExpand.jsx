@@ -12,7 +12,7 @@ import { useTheme } from '../../context/ThemeContext';
 function TodoView({ todo, toggleTodoView }) {
 
     const dispatch = useDispatch();
-    const [, , , , updateDataLS] = useLocalStorage();
+    const { updateDataLS } = useLocalStorage();
 
     const lightTheme = useTheme();
     const [theme, setTheme] = useState('dark');

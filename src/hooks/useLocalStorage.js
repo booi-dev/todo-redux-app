@@ -37,7 +37,7 @@ function useLocalStorage() {
         localStorage.clear();
     };
 
-    return [getDataFromLS, addDataToLS, deleteDataFromLS, toggleDataCompleteLS, updateDataLS, clearDataLS];
+    return { getDataFromLS, addDataToLS, deleteDataFromLS, toggleDataCompleteLS, updateDataLS, clearDataLS };
 }
 
 export default useLocalStorage;

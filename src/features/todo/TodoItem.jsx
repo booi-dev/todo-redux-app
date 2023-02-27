@@ -16,7 +16,7 @@ function TodoView(props) {
     const { todo } = props;
 
     const dispatch = useDispatch();
-    const [, , deleteDataFromLS, toggleDataCompleteLS] = useLocalStorage();
+    const { deleteDataFromLS, toggleDataCompleteLS } = useLocalStorage();
 
     const [btnClass, setBtnClass] = useState('del-btn--todo');
     const [delBtnWarning, setSelBtnWarning] = useState(false);

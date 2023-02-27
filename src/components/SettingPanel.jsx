@@ -20,7 +20,7 @@ import './SettingPanel.css';
 function SettingPanel({ toggleFilter }) {
 
     const dispatch = useDispatch();
-    const [, , , , , clearDataLS] = useLocalStorage();
+    const { clearDataLS } = useLocalStorage();
 
     const lightTheme = useTheme();
     const updateTheme = useUpdateTheme();

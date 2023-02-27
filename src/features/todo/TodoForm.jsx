@@ -15,7 +15,7 @@ const dateFormated = format(date, 'dd-MMM');
 function TodoForm() {
 
     const dispatch = useDispatch();
-    const [, addDataToLS] = useLocalStorage();
+    const { addDataToLS } = useLocalStorage();
 
     const inputRef = useRef();
     let todo = {

@@ -16,7 +16,7 @@ function App() {
   const todoData = useSelector((state) => state.todo.todos);
   const dispatch = useDispatch();
 
-  const [getDataFromLS] = useLocalStorage();
+  const { getDataFromLS } = useLocalStorage();
   const todos = sortArray(todoData);
 
   const theme = useThemeUpdator();
