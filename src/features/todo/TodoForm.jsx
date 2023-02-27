@@ -1,13 +1,13 @@
 import { useRef, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { format } from 'date-fns';
-import useThemeUpdator from '../hooks/useThemeUpdator';
+import useThemeUpdator from '../../hooks/useThemeUpdator';
 import './todoForm.css';
 
 const date = new Date();
 const dateFormated = format(date, 'dd-MMM');
 
-function TodoForm({ addTodo }) {
+function TodoForm({ handleAddTodo }) {
     const inputRef = useRef();
     let todo = {
         id: nanoid(),
@@ -42,7 +42,7 @@ function TodoForm({ addTodo }) {
 
     const submitHandler = function (e) {
         e.preventDefault();
-        addTodo(todo);
+        handleAddTodo(todo);
         clearInputVal();
     };
 

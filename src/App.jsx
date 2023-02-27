@@ -1,6 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
-import TodoForm from "./components/TodoForm";
-import TodoList from "./components/TodoList";
+import { useSelector, useDispatch } from 'react-redux';
+import { addTodo, deleteTodo } from './features/todo/todoSlice';
+import useLocalStorage from './hooks/useLocalStorage';
+import sortArray from './utils/sort';
+
+
+import TodoForm from "./features/todo/TodoForm";
+import TodoList from "./features/todo/TodoList";
 import SettingPanel from "./components/SettingPanel";
 import useThemeUpdator from './hooks/useThemeUpdator';
 
@@ -8,36 +14,42 @@ import './App.css';
 
 function App() {
 
-  const [todos, setTodos] = useState([]);
+  const todoDataFromStore = useSelector((state) => state.todo.todos);
+  const dispatch = useDispatch();
 
-  const getTodoDataFromStorage = function () {
-    const todoList = [];
-    const localStorageArr = Object.values(localStorage);
-    localStorageArr.forEach(data => {
-      const todo = JSON.parse(data);
-      todoList.push(todo);
-    });
+  const [getDataFromLS, addDataToLS, deleteDataFromLS] = useLocalStorage();
 
-    todoList.sort((a, b) => (a.dateOfCreation < b.dateOfCreation) ? 1 : -1);
-    return todoList;
-  };
+  const dataFromLS = getDataFromLS();
 
-  const todoData = getTodoDataFromStorage();
+  const [todos, setTodos] = useState(dataFromLS);
 
-  useEffect(() => {
-    setTodos(todoData);
-  }, []);
+  console.log(dataFromLS);
+
+  // const getTodoDataFromStorage = function () {
+  //   const todoList = [];
+  //   const localStorageArr = Object.values(localStorage);
+
+  //   localStorageArr.forEach(data => {
+  //     const todo = JSON.parse(data);
+  //     todoList.push(todo);
+  //   });
+
+  //   todoList.sort((a, b) => (a.dateOfCreation < b.dateOfCreation) ? 1 : -1);
+  //   return todoList;
+  // };
+
 
   const theme = useThemeUpdator();
 
-  const addTodo = useCallback((todo) => {
-    localStorage.setItem(`${todo.id}`, JSON.stringify(todo));
+  const handleAddTodo = useCallback((todo) => {
+    // localStorage.setItem(`${todo.id}`, JSON.stringify(todo));
+    addDataToLS(todo);
     setTodos((currTodo) => [todo, ...currTodo]);
   });
 
-  const deleteTodo = useCallback((todoId) => {
-    setTodos((currTodo) => currTodo.filter((item) => item.id !== todoId));
-    localStorage.removeItem(todoId);
+  const handleDeleteTodo = useCallback((todo) => {
+    // setTodos((currTodo) => currTodo.filter((item) => item.id !== todoId));
+    deleteDataFromLS(todo);
   });
 
   const toggleCompleteStatus = useCallback((todoId) => {
@@ -77,27 +89,32 @@ function App() {
       const filteredTodos = todos.filter(todo => todo.isComplete === false);
       setTodos(filteredTodos);
     } else {
-      const data = getTodoDataFromStorage();
+      const data = getDataFromLS();
       setTodos(data);
     }
   });
+
+  useEffect(() => {
+    setTodos(dataFromLS);
+    // dispatch(addTodo());
+  }, [dataFromLS]);
 
   return (
     <div className={`app-container ${theme}`}>
       <div className='App'>
         <TodoForm
-          addTodo={addTodo}
+          handleAddTodo={handleAddTodo}
         />
         <TodoList
           todos={todos}
-          deleteTodo={deleteTodo}
+          handleDeleteTodo={handleDeleteTodo}
           toggleCompleteStatus={toggleCompleteStatus}
           updateTodo={updateTodo}
         />
         <SettingPanel
           toggleCompletedTasks={toggleCompletedTasks}
           todoList={todos}
-          deleteTodo={deleteTodo}
+          handleDeleteTodo={handleDeleteTodo}
           clearAllTodo={clearAllTodo}
         />
       </div>

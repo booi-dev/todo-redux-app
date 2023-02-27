@@ -1,4 +1,4 @@
-import Todo from "./Todo";
+import Todo from "./TodoItem";
 import './TodoList.css';
 
 function TodoList(props) {
