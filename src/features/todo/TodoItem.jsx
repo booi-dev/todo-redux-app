@@ -1,4 +1,9 @@
 import { useCallback, useState } from 'react';
+
+import { useDispatch } from 'react-redux';
+import useLocalStorage from '../../hooks/useLocalStorage';
+import { deleteTodo, toggleComplete } from './todoSlice';
+
 import deleteIcon from '../../assets/delete.png';
 import deleteIconWarning from '../../assets/delete-warn.png';
 import useThemeUpdator from '../../hooks/useThemeUpdator';
@@ -8,7 +13,10 @@ import './TodoItem.css';
 
 function TodoView(props) {
 
-    const { todo, handleDeleteTodo, toggleCompleteStatus, updateTodo } = props;
+    const { todo } = props;
+
+    const dispatch = useDispatch();
+    const [, , deleteDataFromLS, toggleDataCompleteLS] = useLocalStorage();
 
     const [btnClass, setBtnClass] = useState('del-btn--todo');
     const [delBtnWarning, setSelBtnWarning] = useState(false);
@@ -18,13 +26,17 @@ function TodoView(props) {
 
     const theme = useThemeUpdator();
 
-    const handleDelBtnClick = (tobeDeleteTodo) => {
+    const handleDelBtnClick = (targetTodo) => {
         setTodoAnimClass('vanishing-anim');
-        setTimeout(() => { handleDeleteTodo(tobeDeleteTodo); }, 1000);
+        setTimeout(() => {
+            dispatch(deleteTodo(targetTodo));
+            deleteDataFromLS(targetTodo);
+        }, 1000);
     };
 
-    const handleCheckboxOnChange = (targetTodo) => {
-        toggleCompleteStatus(targetTodo);
+    const handleToggleComplete = (targetTodo) => {
+        dispatch(toggleComplete(targetTodo));
+        toggleDataCompleteLS(targetTodo);
     };
 
     const toggleTodoView = useCallback(() => {
@@ -47,7 +59,7 @@ function TodoView(props) {
                     <input
                         type="checkbox"
                         className='checkbox--todo'
-                        onChange={() => handleCheckboxOnChange(todo)}
+                        onChange={() => handleToggleComplete(todo)}
                         checked={todo.isComplete}
                     />
                     <button type='button'
@@ -73,7 +85,6 @@ function TodoView(props) {
             </div>
             {isExpand && <TodoExpand todo={todo}
                 toggleTodoView={toggleTodoView}
-                updateTodo={updateTodo}
             />}
         </>
     );

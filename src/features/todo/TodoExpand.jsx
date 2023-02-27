@@ -3,15 +3,21 @@
 import { useState, useEffect } from 'react';
 import './TodoExpand.css';
 
+import { useDispatch } from 'react-redux';
+import useLocalStorage from '../../hooks/useLocalStorage';
+import { updateTodo } from './todoSlice';
+
 import { useTheme } from '../../context/ThemeContext';
 
-function TodoView({ todo, toggleTodoView, updateTodo }) {
+function TodoView({ todo, toggleTodoView }) {
+
+    const dispatch = useDispatch();
+    const [, , , , updateDataLS] = useLocalStorage();
 
     const lightTheme = useTheme();
     const [theme, setTheme] = useState('dark');
 
-    const [task, setTask] = useState(todo.task);
-    const [note, setNote] = useState(todo.note);
+    const [todoData, setTodoData] = useState({ ...todo });
 
     useEffect(() => {
         lightTheme ? setTheme('light') : setTheme('dark');
@@ -21,12 +27,13 @@ function TodoView({ todo, toggleTodoView, updateTodo }) {
         toggleTodoView();
     };
 
-    const handleUpdateTodo = function () {
-        updateTodo({ ...todo, task, note });
+    const handleUpdateTodo = function (targetTodo) {
+        dispatch(updateTodo(targetTodo));
+        updateDataLS(targetTodo);
     };
 
     const handlerEnterKey = function (e) {
-        e.key === "Enter" && handleUpdateTodo();
+        e.key === "Enter" && handleUpdateTodo(todoData);
     };
 
     return (
@@ -34,21 +41,27 @@ function TodoView({ todo, toggleTodoView, updateTodo }) {
             <div className={`todo-view ${theme}`}>
                 <textarea
                     className={`task--view ${theme}`}
-                    value={task}
-                    onChange={(e) => setTask(e.currentTarget.value)}
+                    value={todoData.task}
+                    onChange={(e) => setTodoData({
+                        ...todoData,
+                        task: e.currentTarget.value
+                    })}
                     onKeyDown={handlerEnterKey}
-                    onBlur={handleUpdateTodo}
+                    onBlur={() => handleUpdateTodo(todoData)}
                 />
                 {/* </div> */}
                 <label htmlFor="note" className='note-label'>note :
                     <textarea
                         id="note"
                         className={`note--view ${theme}`}
-                        value={note}
+                        value={todoData.note}
                         placeholder='add note ...'
-                        onChange={(e) => setNote(e.currentTarget.value)}
+                        onChange={(e) => setTodoData({
+                            ...todoData,
+                            note: e.currentTarget.value
+                        })}
                         onKeyDown={handlerEnterKey}
-                        onBlur={handleUpdateTodo}
+                        onBlur={() => handleUpdateTodo(todoData)}
                     />
                 </label>
 

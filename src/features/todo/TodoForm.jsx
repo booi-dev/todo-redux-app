@@ -1,13 +1,22 @@
 import { useRef, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { format } from 'date-fns';
+
+import { useDispatch } from 'react-redux';
+import useLocalStorage from '../../hooks/useLocalStorage';
+import { addTodo } from './todoSlice';
+
 import useThemeUpdator from '../../hooks/useThemeUpdator';
 import './todoForm.css';
 
 const date = new Date();
 const dateFormated = format(date, 'dd-MMM');
 
-function TodoForm({ handleAddTodo }) {
+function TodoForm() {
+
+    const dispatch = useDispatch();
+    const [, addDataToLS] = useLocalStorage();
+
     const inputRef = useRef();
     let todo = {
         id: nanoid(),
@@ -20,9 +29,10 @@ function TodoForm({ handleAddTodo }) {
         isComplete: false,
     };
 
-    useEffect(() => {
-        inputRef.current.focus();
-    }, []);
+    const handleAddTodo = () => {
+        addDataToLS(todo);
+        dispatch(addTodo(todo));
+    };
 
     const theme = useThemeUpdator();
 
@@ -50,6 +60,10 @@ function TodoForm({ handleAddTodo }) {
         /* eslint-disable-next-line no-unused-expressions */
         e.key === "Enter" && submitHandler(e);
     };
+
+    useEffect(() => {
+        inputRef.current.focus();
+    }, []);
 
     return (
         <form

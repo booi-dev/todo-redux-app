@@ -18,15 +18,15 @@ const todoSlice = createSlice({
     initialState,
     reducers: {
         addTodo: (state, action) => {
+            console.log('adding to store', action.payload);
             state.todos.push(action.payload);
         },
         deleteTodo: (state, action) => {
+            console.log('delete form store', action.payload);
             state.todos = state.todos.filter((t) => t.id !== action.payload.id);
         },
-        clearTodo: (state) => {
-            state.todos = [];
-        },
         toggleComplete: (state, action) => {
+            console.log('toggle store', action.payload);
             state.todos = state.todos.map((t) => {
                 if (t.id === action.payload.id) {
                     return {
@@ -38,7 +38,7 @@ const todoSlice = createSlice({
             });
         },
         updateNote: (state, action) => {
-            console.log(action.payload);
+            console.log('update store', action.payload);
             state.todos = state.todos.map((t) => {
                 if (t.id === action.payload.id) {
                     return {
@@ -48,9 +48,22 @@ const todoSlice = createSlice({
                 }
                 return t;
             });
-        }
+        },
+        updateTodo: (state, action) => {
+            console.log('updating todo', action.payload);
+            state.todos = state.todos.map((t) => {
+                if (t.id === action.payload.id) {
+                    return action.payload;
+                }
+                return t;
+            });
+        },
+        clearTodo: (state) => {
+            console.log('clearing store');
+            state.todos = [];
+        },
     }
 });
 
 export default todoSlice.reducer;
-export const { addTodo, deleteTodo, clearTodo, toggleComplete, updateNote } = todoSlice.actions;
+export const { addTodo, deleteTodo, clearTodo, toggleComplete, updateNote, updateTodo } = todoSlice.actions;

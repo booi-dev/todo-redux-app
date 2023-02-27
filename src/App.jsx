@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addTodo, deleteTodo, clearTodo, toggleComplete, updateNote } from './features/todo/todoSlice';
+import { addTodo, clearTodo } from './features/todo/todoSlice';
 import useLocalStorage from './hooks/useLocalStorage';
 import sortArray from './utils/sort';
 
@@ -14,39 +14,13 @@ import './App.css';
 function App() {
 
   const todoData = useSelector((state) => state.todo.todos);
-  const dispatch = useDispatch();
 
-  const [getDataFromLS, addDataToLS, deleteDataFromLS, clearDataLS, toggleDataCompleteLS] = useLocalStorage();
+  const dispatch = useDispatch();
+  const [getDataFromLS, , , , , clearDataLS] = useLocalStorage();
+
   const theme = useThemeUpdator();
 
   const todos = sortArray(todoData);
-
-  const handleAddTodo = useCallback((todo) => {
-    addDataToLS(todo);
-    dispatch(addTodo(todo));
-  });
-
-  const handleDeleteTodo = useCallback((todo) => {
-    deleteDataFromLS(todo);
-    dispatch(deleteTodo(todo));
-  });
-
-  const toggleCompleteStatus = useCallback((todo) => {
-    dispatch(toggleComplete(todo));
-    toggleDataCompleteLS(todo);
-  });
-
-  const updateTodo = useCallback((updatedTodo) => {
-    // setTodos(
-    //   todos.map(todo => {
-    //     if (todo.id === updatedTodo.id) {
-    //       localStorage.setItem(todo.id, JSON.stringify(updatedTodo));
-    //       return updatedTodo;
-    //     }
-    //     return todo;
-    //   })
-    // );
-  });
 
   const clearAllTodo = useCallback(() => {
     dispatch(clearTodo());
@@ -69,15 +43,8 @@ function App() {
   return (
     <div className={`app-container ${theme}`}>
       <div className='App'>
-        <TodoForm
-          handleAddTodo={handleAddTodo}
-        />
-        <TodoList
-          todos={todos}
-          handleDeleteTodo={handleDeleteTodo}
-          toggleCompleteStatus={toggleCompleteStatus}
-          updateTodo={updateTodo}
-        />
+        <TodoForm />
+        <TodoList todos={todos} />
         <SettingPanel
           // toggleCompletedTasks={toggleCompletedTasks}
           // todoList={todos}
