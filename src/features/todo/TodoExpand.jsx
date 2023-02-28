@@ -45,7 +45,6 @@ function TodoView({ todo, toggleTodoView }) {
                     onKeyDown={handlerEnterKey}
                     onBlur={() => handleUpdateTodo(todoData)}
                 />
-                {/* </div> */}
                 <label htmlFor="note" className='note-label'>note :
                     <textarea
                         id="note"

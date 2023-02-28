@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-
 import { useState, useEffect } from 'react';
 
 import useTodoControls from '../app/todoControls';
@@ -69,7 +66,8 @@ function SettingPanel({ toggleFilter }) {
 
     return (
         <div className="setting-panel">
-            <div role="button"
+            <button
+                type='button'
                 tabIndex={0}
                 className={`filter btns-con--setting ${theme}`}
                 onClick={toggleCompletedTaskHide}
@@ -78,8 +76,9 @@ function SettingPanel({ toggleFilter }) {
                 <span className={`filter label ${filterLabelClass}`}>{btnHideTaskLabel}</span>
                 <button type='button' className={`filter btn--setting ${theme}`}> {btnHideTaskText}</button>
                 <img src={checkboxIcon} className='icon--setting' alt='check box icon' />
-            </div>
-            <div role="button"
+            </button>
+
+            <button type="button"
                 tabIndex={0}
                 className={`clear btns-con--setting ${theme}`}
                 onClick={clearAllTodo}
@@ -91,8 +90,8 @@ function SettingPanel({ toggleFilter }) {
                     ? <img src={storageWarningIcon} className='icon--setting' alt='' />
                     : <img src={storageIcon} className='icon--setting' alt='' />
                 }
+            </button>
 
-            </div>
             <div className={`theme ${themeClass} btns-con--setting`}
                 onMouseEnter={() => setThemeClassLabel('show')}
                 onMouseLeave={() => setThemeClassLabel('hide')}
