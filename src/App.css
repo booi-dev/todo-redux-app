@@ -35,7 +35,7 @@
 
 .App {
   margin-inline: auto;
-  padding: 3em 4em;
+  padding: 1em 2em;
   box-shadow: 0 0 4px #4444446c;
 }
 
@@ -65,4 +65,11 @@
 .app-title {
   font-size: var(--font-xlarge);
   padding-block: 0.5em;
+}
+
+@media (width > 500px) {
+  .App {
+    width: 450px;
+    padding: 3em 4em;
+  }
 }
