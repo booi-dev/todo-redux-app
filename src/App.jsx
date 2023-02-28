@@ -1,8 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { replaceTodo } from './features/todo/todoSlice';
-import useLocalStorage from './hooks/useLocalStorage';
-
+import { getDataFromLS } from './utils/localStorage';
 import sortArray from './utils/sort';
 import TodoForm from "./features/todo/TodoForm";
 import TodoList from "./features/todo/TodoList";
@@ -13,10 +12,9 @@ import './App.css';
 
 function App() {
 
-  const todoData = useSelector((state) => state.todo.todos);
+  const todoData = useSelector((state) => state.todoStore.todos);
   const dispatch = useDispatch();
 
-  const { getDataFromLS } = useLocalStorage();
   const todos = sortArray(todoData);
 
   const theme = useThemeUpdator();

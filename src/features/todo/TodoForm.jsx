@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { format } from 'date-fns';
 
 import { useDispatch } from 'react-redux';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import { addDataToLS } from '../../utils/localStorage';
 import { addTodo } from './todoSlice';
 
 import useThemeUpdator from '../../hooks/useThemeUpdator';
@@ -15,9 +15,9 @@ const dateFormated = format(date, 'dd-MMM');
 function TodoForm() {
 
     const dispatch = useDispatch();
-    const { addDataToLS } = useLocalStorage();
 
     const inputRef = useRef();
+
     let todo = {
         id: nanoid(),
         task: "",

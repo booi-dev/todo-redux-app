@@ -1,18 +1,18 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useState, useEffect } from 'react';
-import './TodoExpand.css';
 
 import { useDispatch } from 'react-redux';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import { updateDataLS } from '../../utils/localStorage';
 import { updateTodo } from './todoSlice';
 
 import { useTheme } from '../../context/ThemeContext';
+import './TodoExpand.css';
 
 function TodoView({ todo, toggleTodoView }) {
 
     const dispatch = useDispatch();
-    const { updateDataLS } = useLocalStorage();
+    // const { updateDataLS } = useLocalStorage();
 
     const lightTheme = useTheme();
     const [theme, setTheme] = useState('dark');

@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
-import useLocalStorage from '../hooks/useLocalStorage';
+import { clearDataLS } from '../utils/localStorage';
 import { clearTodo } from '../features/todo/todoSlice';
 
 import checkboxIcon from '../assets/checkbox.png';
@@ -20,7 +20,6 @@ import './SettingPanel.css';
 function SettingPanel({ toggleFilter }) {
 
     const dispatch = useDispatch();
-    const { clearDataLS } = useLocalStorage();
 
     const lightTheme = useTheme();
     const updateTheme = useUpdateTheme();
