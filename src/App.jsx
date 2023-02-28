@@ -3,10 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { replaceTodo } from './features/todo/todoSlice';
 import { getDataFromLS } from './utils/localStorage';
 import sortArray from './utils/sort';
+
+import useThemeControl from './app/themeControl';
+
 import TodoForm from "./features/todo/TodoForm";
 import TodoList from "./features/todo/TodoList";
 import SettingPanel from "./components/SettingPanel";
-import useThemeUpdator from './hooks/useThemeUpdator';
 
 import './App.css';
 
@@ -17,7 +19,7 @@ function App() {
 
   const todos = sortArray(todoData);
 
-  const theme = useThemeUpdator();
+  const [theme] = useThemeControl();
 
   const [hideCompletedTasks, setHideCompletedTasks] = useState(false);
 
