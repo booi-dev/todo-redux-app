@@ -17,20 +17,24 @@ const todoSlice = createSlice({
     name: "todo",
     initialState,
     reducers: {
-        replaceTodo: (state, action) => {
-            console.log('replace store', action.payload);
+        reset: (state, action) => {
             state.todos = action.payload;
         },
-        addTodo: (state, action) => {
-            console.log('adding to store', action.payload);
+        add: (state, action) => {
             state.todos.push(action.payload);
         },
-        deleteTodo: (state, action) => {
-            console.log('delete form store', action.payload);
+        remove: (state, action) => {
             state.todos = state.todos.filter((t) => t.id !== action.payload.id);
         },
+        update: (state, action) => {
+            state.todos = state.todos.map((t) => {
+                if (t.id === action.payload.id) {
+                    return action.payload;
+                }
+                return t;
+            });
+        },
         toggleComplete: (state, action) => {
-            console.log('toggle store', action.payload.task);
             state.todos = state.todos.map((t) => {
                 if (t.id === action.payload.id) {
                     return {
@@ -53,21 +57,11 @@ const todoSlice = createSlice({
                 return t;
             });
         },
-        updateTodo: (state, action) => {
-            console.log('updating todo', action.payload);
-            state.todos = state.todos.map((t) => {
-                if (t.id === action.payload.id) {
-                    return action.payload;
-                }
-                return t;
-            });
-        },
-        clearTodo: (state) => {
-            console.log('clearing store');
-            state.todos = [];
-        },
+        // clearTodo: (state) => {
+        //     state.todos = [];
+        // },
     }
 });
 
 export default todoSlice.reducer;
-export const { replaceTodo, addTodo, deleteTodo, clearTodo, toggleComplete, updateNote, updateTodo } = todoSlice.actions;
+export const { reset, add, update, remove, toggleComplete, updateNote } = todoSlice.actions;

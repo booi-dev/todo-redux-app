@@ -28,6 +28,7 @@ module.exports = {
         "react/prop-types": "off",
         "no-unused-expressions": "off",
         'no-console': 'off',
+        'jsx-a11y/control-has-associated-label': 'off',
     },
     // "required": {
     //     "some": ["nesting", "id"]

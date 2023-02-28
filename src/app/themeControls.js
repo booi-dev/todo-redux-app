@@ -11,10 +11,7 @@ function useThemeControl() {
         dispatch(updateTheme(t));
     };
 
-    return [
-        theme,
-        setTheme
-    ];
+    return [theme, setTheme];
 }
 
 export default useThemeControl;

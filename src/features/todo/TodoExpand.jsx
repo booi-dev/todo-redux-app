@@ -1,18 +1,14 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useState, useEffect } from 'react';
 
-import { useDispatch } from 'react-redux';
 import { updateDataLS } from '../../utils/localStorage';
-import { updateTodo } from './todoSlice';
+import useTodoControls from '../../app/todoControls';
 
 import { useTheme } from '../../context/ThemeContext';
 import './TodoExpand.css';
 
 function TodoView({ todo, toggleTodoView }) {
 
-    const dispatch = useDispatch();
-    // const { updateDataLS } = useLocalStorage();
+    const { updateTodo } = useTodoControls();
 
     const lightTheme = useTheme();
     const [theme, setTheme] = useState('dark');
@@ -28,7 +24,7 @@ function TodoView({ todo, toggleTodoView }) {
     };
 
     const handleUpdateTodo = function (targetTodo) {
-        dispatch(updateTodo(targetTodo));
+        updateTodo(targetTodo);
         updateDataLS(targetTodo);
     };
 
@@ -69,8 +65,8 @@ function TodoView({ todo, toggleTodoView }) {
                     className={`del-btn--view ${theme}`}
                 >close</button>
             </div>
-            <div
-                role='dialog'
+
+            <button type='button'
                 className='back-drop--todo-view'
                 onClick={closeTodoView}
                 onKeyDown={event => {
@@ -79,6 +75,7 @@ function TodoView({ todo, toggleTodoView }) {
                     }
                 }}
             />
+
         </>
     );
 }

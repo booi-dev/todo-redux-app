@@ -2,9 +2,8 @@ import { useRef, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { format } from 'date-fns';
 
-import { useDispatch } from 'react-redux';
 import { addDataToLS } from '../../utils/localStorage';
-import { addTodo } from './todoSlice';
+import useTodoControls from '../../app/todoControls';
 
 import useThemeUpdator from '../../hooks/useThemeUpdator';
 import './todoForm.css';
@@ -14,7 +13,7 @@ const dateFormated = format(date, 'dd-MMM');
 
 function TodoForm() {
 
-    const dispatch = useDispatch();
+    const { addTodo } = useTodoControls();
 
     const inputRef = useRef();
 
@@ -31,7 +30,7 @@ function TodoForm() {
 
     const handleAddTodo = () => {
         addDataToLS(todo);
-        dispatch(addTodo(todo));
+        addTodo(todo);
     };
 
     const theme = useThemeUpdator();

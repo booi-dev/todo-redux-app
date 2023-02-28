@@ -3,9 +3,8 @@
 
 import { useState, useEffect } from 'react';
 
-import { useDispatch } from 'react-redux';
+import useTodoControls from '../app/todoControls';
 import { clearDataLS } from '../utils/localStorage';
-import { clearTodo } from '../features/todo/todoSlice';
 
 import checkboxIcon from '../assets/checkbox.png';
 import storageIcon from '../assets/storage.png';
@@ -19,7 +18,7 @@ import './SettingPanel.css';
 
 function SettingPanel({ toggleFilter }) {
 
-    const dispatch = useDispatch();
+    const { clearTodo } = useTodoControls();
 
     const lightTheme = useTheme();
     const updateTheme = useUpdateTheme();
@@ -39,7 +38,8 @@ function SettingPanel({ toggleFilter }) {
     const btnClearStorageLabel = 'clear local storage';
 
     const clearAllTodo = () => {
-        dispatch(clearTodo());
+        // dispatch(clearTodo());
+        clearTodo();
         clearDataLS();
     };
 

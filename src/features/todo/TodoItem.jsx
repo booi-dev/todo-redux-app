@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-expressions */
 import { useCallback, useState } from 'react';
 
-import { useDispatch } from 'react-redux';
 import { deleteDataFromLS, toggleDataCompleteLS } from '../../utils/localStorage';
-import { deleteTodo, toggleComplete } from './todoSlice';
+import useTodoControls from '../../app/todoControls';
 
 import deleteIcon from '../../assets/delete.png';
 import deleteIconWarning from '../../assets/delete-warn.png';
@@ -17,12 +16,11 @@ function TodoView(props) {
 
     const { todo } = props;
 
-    const dispatch = useDispatch();
+    const { deleteTodo, switchComplete } = useTodoControls();
 
     const [btnClass, setBtnClass] = useState('del-btn--todo');
     const [delBtnWarning, setSelBtnWarning] = useState(false);
     const [todoAnimClass, setTodoAnimClass] = useState('');
-
     const [isExpand, setIsExpand] = useState(false);
 
     const theme = useThemeUpdator();
@@ -30,13 +28,13 @@ function TodoView(props) {
     const handleDelBtnClick = (targetTodo) => {
         setTodoAnimClass('vanishing-anim');
         setTimeout(() => {
-            dispatch(deleteTodo(targetTodo));
+            deleteTodo(targetTodo);
             deleteDataFromLS(targetTodo);
         }, 1000);
     };
 
     const handleToggleComplete = (targetTodo) => {
-        dispatch(toggleComplete(targetTodo));
+        switchComplete(targetTodo);
         toggleDataCompleteLS(targetTodo);
     };
 
