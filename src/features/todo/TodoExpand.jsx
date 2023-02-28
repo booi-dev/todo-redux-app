@@ -11,7 +11,7 @@ function TodoView(props) {
     const { todo, toggleTodoView } = props;
 
     const { updateTodo } = useTodoControls();
-    const { theme } = useThemeControls;
+    const { theme } = useThemeControls();
 
     const [todoData, setTodoData] = useState({ ...todo });
 

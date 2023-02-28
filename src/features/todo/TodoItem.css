@@ -22,7 +22,7 @@
 }
 
 .todo.light:hover {
-  background: var(--clr-3);
+  background: var(--lt-clr-2);
 }
 
 .todo.vanishing-anim {

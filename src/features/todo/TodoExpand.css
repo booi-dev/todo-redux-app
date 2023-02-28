@@ -20,7 +20,7 @@
 }
 
 .todo-view.light {
-  background-color: var(--lt-clr-1);
+  background-color: var(--lt-clr-2);
 }
 
 .task--view {
@@ -33,6 +33,7 @@
 
   line-height: var(--line-height);
   font-size: var(--font-medium);
+  font-family: inherit;
 
   color: inherit;
   border-radius: 5px;
@@ -88,7 +89,7 @@
 }
 
 .del-btn--view.light {
-  background-color: var(--lt-clr-2);
+  background-color: var(--lt-clr-1);
 }
 
 .del-btn--view:hover {
