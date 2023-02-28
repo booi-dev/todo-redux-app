@@ -1,5 +1,5 @@
 .todo-list {
-  max-height: 65vh;
+  height: 55vh;
   overflow: scroll;
   overflow-x: hidden;
 }

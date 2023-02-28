@@ -15,7 +15,7 @@ import './App.css';
 function App() {
 
   const { todoData, resetTodo } = useTodoControls();
-  const [theme] = useThemeControl();
+  const { theme } = useThemeControl();
 
   const todos = sortArray(todoData);
 
@@ -38,8 +38,8 @@ function App() {
     <div className={`app-container ${theme}`}>
       <div className='App'>
         <TodoForm />
-        <TodoList todos={todos} />
         <SettingPanel toggleFilter={toggleFilter} />
+        <TodoList todos={todos} />
       </div>
     </div>
   );

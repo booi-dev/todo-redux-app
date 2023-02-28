@@ -11,7 +11,12 @@ function useThemeControl() {
         dispatch(updateTheme(t));
     };
 
-    return [theme, setTheme];
+    const toggleDarkTheme = () => {
+        if (theme === 'dark') setTheme('light');
+        else { setTheme('dark'); }
+    };
+
+    return { theme, setTheme, toggleDarkTheme };
 }
 
 export default useThemeControl;

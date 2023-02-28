@@ -1,104 +1,39 @@
 .setting-panel {
-  position: absolute;
-  right: -60px;
-  top: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5em;
+
   font-size: var(--font-small);
+
+  margin-block: 1em;
 }
 
-.btns-con--setting {
+.setting-panel button {
   display: flex;
   align-items: center;
-  gap: 0.25em;
-  justify-content: space-between;
-  padding: 0.3em 0.3em;
-  background-color: var(--clr-blk-1);
-  border: 1px solid var(--clr-3);
-  color: var(--clr-3);
-  border-radius: 5px;
-  margin-bottom: 0.5em;
-}
-
-.btns-con--setting.light {
-  background-color: var(--lt-clr-1);
-  color: var(--lt-font-clr-1);
-}
-
-.btns-con--setting:hover {
-  scale: 105%;
-}
-
-.clear.btns-con--setting:hover {
-  color: #e62511;
-  border-color: #e62511;
-}
-
-.btn--setting {
-  border: none;
-  background-color: transparent;
-  font-size: var(--font-xsmall);
-  color: inherit;
-}
-
-.icon--setting {
-  width: 12px;
-}
-
-.label {
-  display: none;
-  position: absolute;
-  right: 60px;
-  text-align: center;
-  font-size: var(--font-xsmall);
-  background-color: var(--clr-3);
-  color: var(--font-clr-blk);
-  padding: 0.3em;
-  line-height: 15px;
-  width: 100px;
-}
-
-.label.show {
-  display: block;
-}
-
-.theme.btns-con--setting {
-  display: flex;
   justify-content: center;
+  gap: 0.25em;
+  padding-inline: 0.5em;
+  padding-block: 0.25em;
+
+  font-family: inherit;
+
+  color: black;
+  background-color: var(--acc-clr);
+  border: none;
+
+  transition: scale 0.5s ease;
 }
 
-.theme.light.btns-con--setting {
-  background-color: var(--clr-3);
+.setting-panel button:hover {
+  scale: 1.1;
 }
 
-.theme.dark.btns-con--setting {
-  background-color: var(--clr-blk-1);
+.toggle-dark-theme-btn.dark {
+  background-color: #e4d0c1;
 }
 
-@media (max-width: 500px) {
-  .setting-panel {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    inset: revert;
-    top: 1em;
-    gap: 0.5em;
-    bottom: 0;
-  }
-  .btns-con--setting {
-    justify-content: center;
-    flex: 1;
-    padding: 0;
-  }
-  .btn--setting {
-    font-size: var(--font-medium);
-  }
-  .btns-con--setting:hover {
-    scale: 1;
-  }
-  .label {
-    translate: -2% -4em;
-    inset: 0;
-    left: -0px;
-    width: 100px;
-    height: max-content;
-  }
+.toggle-dark-theme-btn.light {
+  color: rgb(214, 214, 214);
+  background-color: #5f5750;
 }
