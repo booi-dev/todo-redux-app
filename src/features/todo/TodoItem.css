@@ -1,4 +1,6 @@
 .todo {
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -58,7 +60,7 @@
 }
 
 .task--todo {
-  display: inline;
+  text-align: start;
 
   font-size: var(--font-medium);
   font-weight: 400;
@@ -75,6 +77,12 @@
 }
 
 .del-btn--todo {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  translate: 0 -50%;
+  margin-right: 1em;
+
   background: transparent;
   border: none;
 
@@ -91,9 +99,3 @@
   scale: 1.1;
   color: red;
 }
-/* 
-@media (width > 500px) {
-  .todo {
-    width: 370px;
-  }
-} */

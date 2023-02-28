@@ -57,14 +57,15 @@ function TodoView(props) {
                         onChange={() => handleToggleComplete(todo)}
                         checked={todo.isComplete}
                     />
-                    <button type='button'
+                    <span type='button'
+                        role='button'
                         tabIndex={0}
                         className={`task--todo ${todoAnimClass}`}
                         onClick={toggleTodoView}
                         onKeyDown={handleEnterForTask}
                     >
                         {todo.task}
-                    </button>
+                    </span>
                 </div>
                 {
                     isDelBtnShow
