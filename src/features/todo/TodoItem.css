@@ -76,26 +76,46 @@
   opacity: 0;
 }
 
-.del-btn--todo {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  translate: 0 -50%;
-  margin-right: 1em;
-
+.todo button {
+  display: grid;
+  place-self: center;
   background: transparent;
   border: none;
-
-  transition: opacity 3s ease;
-  opacity: 1;
 }
 
-.del-btn--icon {
+.kebab-menu-btn {
   color: var(--clr-1);
   cursor: pointer;
 }
 
-.del-btn--icon:hover {
+.kebab-menu-btn:hover {
   scale: 1.1;
-  color: red;
+}
+
+.option-menu {
+  position: absolute;
+  top: 50%;
+  right: 0.5em;
+  translate: 0 -50%;
+  background-color: white;
+}
+
+.option-btn {
+  text-align: start;
+  width: 100%;
+  padding: 0.25em 1em;
+  font-family: inherit;
+  font-size: var(--font-small);
+  color: var(--clr-1);
+  background: transparent;
+  border: 1px solid;
+}
+
+.option-btn:hover {
+  color: var(--font-clr-2);
+  background: rgb(120, 120, 120);
+}
+
+.option-btn.delete:hover {
+  background: #e92222;
 }

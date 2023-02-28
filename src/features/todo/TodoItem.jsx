@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-expressions */
 import { useCallback, useState } from 'react';
-import { MdDeleteForever } from 'react-icons/md';
+import { GoKebabVertical } from 'react-icons/go';
 
 import { deleteDataFromLS, toggleDataCompleteLS } from '../../utils/localStorage';
 import useTodoControls from '../../app/todoControls';
 import useThemeControls from '../../app/themeControls';
 
 import TodoExpand from './TodoExpand';
+import BackDrop from '../../components/BackDrop';
 
 import './TodoItem.css';
 
@@ -17,13 +18,14 @@ function TodoView(props) {
     const { deleteTodo, switchComplete } = useTodoControls();
     const { theme } = useThemeControls();
 
-    const [isDelBtnShow, setIsDelBtn] = useState(false);
+    const [isOptions, setIsOptions] = useState(false);
     const [isExpand, setIsExpand] = useState(false);
 
     const [todoAnimClass, setTodoAnimClass] = useState('');
 
     const handleDelBtnClick = (targetTodo) => {
         setTodoAnimClass('vanishing-anim');
+        setIsOptions(false);
         setTimeout(() => {
             deleteTodo(targetTodo);
             deleteDataFromLS(targetTodo);
@@ -43,13 +45,18 @@ function TodoView(props) {
         e.key === "Enter" && toggleTodoView();
     };
 
+    const handleExpandBtn = () => {
+        setIsExpand(!isExpand);
+        setIsOptions(false);
+    };
+
+    const backdropHandler = () => {
+        setIsOptions(false);
+    };
+
     return (
         <>
-            <div
-                className={`todo ${todoAnimClass} ${theme}`}
-                onMouseEnter={() => setIsDelBtn(true)}
-                onMouseLeave={() => setIsDelBtn(false)}
-            >
+            <div className={`todo ${todoAnimClass} ${theme}`}>
                 <div>
                     <input
                         type="checkbox"
@@ -67,16 +74,26 @@ function TodoView(props) {
                         {todo.task}
                     </span>
                 </div>
-                {
-                    isDelBtnShow
-                    && <button
-                        type='button'
-                        className='del-btn--todo'
-                        onClick={() => handleDelBtnClick(todo)}
-                    >
-                        <MdDeleteForever size={23} className="del-btn--icon" />
-                    </button>
+
+                <button type='button'
+                    onClick={() => setIsOptions(!isOptions)}>
+                    <GoKebabVertical className='kebab-menu-btn' />
+                </button>
+                {isOptions &&
+                    <BackDrop handler={backdropHandler} />
                 }
+                {isOptions &&
+                    <div className='option-menu'
+                        onMouseLeave={() => setIsOptions(false)}
+                    >
+                        <button type='button' className='option-btn'
+                            onClick={handleExpandBtn}
+                        >expand</button>
+                        <button type='button' className='option-btn delete'
+                            onClick={handleDelBtnClick}>delete </button>
+                    </div>
+                }
+
             </div>
             {isExpand && <TodoExpand todo={todo}
                 toggleTodoView={toggleTodoView}
