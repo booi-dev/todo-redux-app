@@ -25,11 +25,9 @@ function App() {
     setHideCompletedTasks(!hideCompletedTasks);
     if (!hideCompletedTasks) {
       const filteredTodos = getDataFromLS().filter(todo => todo.isComplete === false);
-      // dispatch(replaceTodo(filteredTodos));
       resetTodo(filteredTodos);
     } else {
       const data = getDataFromLS();
-      // dispatch(replaceTodo(data));
       resetTodo(data);
     }
   });

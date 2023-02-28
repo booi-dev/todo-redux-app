@@ -1,13 +1,10 @@
 /* eslint-disable no-unused-expressions */
 import { useCallback, useState } from 'react';
+import { MdDeleteForever } from 'react-icons/md';
 
 import { deleteDataFromLS, toggleDataCompleteLS } from '../../utils/localStorage';
 import useTodoControls from '../../app/todoControls';
-// import useThemeControls from '../../app/themeControls';
-
-import deleteIcon from '../../assets/delete.png';
-import deleteIconWarning from '../../assets/delete-warn.png';
-// import useThemeUpdator from '../../hooks/useThemeUpdator';
+import useThemeControls from '../../app/themeControls';
 
 import TodoExpand from './TodoExpand';
 
@@ -18,12 +15,12 @@ function TodoView(props) {
     const { todo } = props;
 
     const { deleteTodo, switchComplete } = useTodoControls();
-    // const { theme } = useThemeControls();
+    const { theme } = useThemeControls();
 
-    const [btnClass, setBtnClass] = useState('del-btn--todo');
-    const [delBtnWarning, setSelBtnWarning] = useState(false);
-    const [todoAnimClass, setTodoAnimClass] = useState('');
+    const [isDelBtnShow, setIsDelBtn] = useState(false);
     const [isExpand, setIsExpand] = useState(false);
+
+    const [todoAnimClass, setTodoAnimClass] = useState('');
 
     const handleDelBtnClick = (targetTodo) => {
         setTodoAnimClass('vanishing-anim');
@@ -49,9 +46,9 @@ function TodoView(props) {
     return (
         <>
             <div
-                className={`todo ${todoAnimClass}`}
-                onMouseEnter={() => setBtnClass('del-btn--todo show')}
-                onMouseLeave={() => setBtnClass('del-btn--todo')}
+                className={`todo ${todoAnimClass} ${theme}`}
+                onMouseEnter={() => setIsDelBtn(true)}
+                onMouseLeave={() => setIsDelBtn(false)}
             >
                 <div>
                     <input
@@ -69,17 +66,16 @@ function TodoView(props) {
                         {todo.task}
                     </button>
                 </div>
-                <button
-                    type='button'
-                    className={btnClass}
-                    onClick={() => handleDelBtnClick(todo)}
-                    onMouseEnter={() => setSelBtnWarning(true)}
-                    onMouseLeave={() => setSelBtnWarning(false)}
-                >
-                    {delBtnWarning
-                        ? <img src={deleteIconWarning} alt="delete button" className='del-icon-warning--todo' />
-                        : <img src={deleteIcon} alt="delete button" />}
-                </button>
+                {isDelBtnShow
+                    && <button
+                        type='button'
+                        className='del-btn--todo'
+                        onClick={() => handleDelBtnClick(todo)}
+                    >
+                        <MdDeleteForever size={20} />
+                    </button>
+                }
+
             </div>
             {isExpand && <TodoExpand todo={todo}
                 toggleTodoView={toggleTodoView}

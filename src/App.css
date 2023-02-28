@@ -3,7 +3,7 @@
 
   --clr-1: #4e4e4e;
   --clr-2: #303030;
-  --clr-3: #878787;
+  --clr-3: #a9a9a9;
 
   --clr-wht-1: #303030;
   --clr-blk-1: #191919;
@@ -12,6 +12,7 @@
   --font-clr-2: #dcdcdc;
   --font-clr-blk: #111111;
 
+  /* Light theme */
   --lt-clr-1: #cdcdcd;
   --lt-clr-2: #b7b6b6;
   --lt-font-clr-1: #2b2b2b;

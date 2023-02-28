@@ -20,7 +20,7 @@
 }
 
 .todo.light:hover {
-  background: revert;
+  background: var(--clr-3);
 }
 
 .todo.vanishing-anim {
@@ -75,10 +75,6 @@
 }
 
 .del-btn--todo {
-  opacity: 0;
-}
-
-.del-btn--todo.show {
   background: transparent;
   border: none;
 
@@ -90,7 +86,7 @@
   width: 15px;
 }
 
-.del-icon-warning--todo {
+/* .del-icon-warning--todo {
   transition: scale 0.2s;
   scale: 1.3;
-}
+} */

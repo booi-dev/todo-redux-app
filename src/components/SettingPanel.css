@@ -5,7 +5,7 @@
 
   font-size: var(--font-small);
 
-  margin-block: 1em;
+  margin-block-start: 1em;
 }
 
 .setting-panel button {
