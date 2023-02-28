@@ -9,6 +9,7 @@
   width: 100%;
 
   font-size: var(--font-medium);
+  font-family: inherit;
 
   border: 1px solid transparent;
   transition: border-color 0.8s ease-in;
