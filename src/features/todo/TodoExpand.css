@@ -1,8 +1,9 @@
 .todo-view {
+  position: fixed;
+
   display: flex;
   flex-direction: column;
   gap: 0.3em;
-  position: fixed;
   inset: 0;
   top: 30%;
   left: 50%;
@@ -10,6 +11,7 @@
   width: 450px;
   height: 240px;
   padding: 2em;
+
   border-radius: 5px;
   color: var(--font-clr);
   background-color: var(--clr-2);
@@ -27,14 +29,16 @@
 
 .task--view,
 .note--view {
-  resize: none;
-  background-color: inherit;
-  border: none;
   padding: 0.5em;
-  border-radius: 5px;
-  color: inherit;
+
   line-height: var(--line-height);
   font-size: var(--font-medium);
+
+  color: inherit;
+  border-radius: 5px;
+  background-color: inherit;
+  border: none;
+  resize: none;
   transition: background 0.5s ease-in;
 }
 
@@ -51,15 +55,15 @@
 
 .task--view:hover,
 .note--view:hover {
-  background: var(--clr-blk-1);
   border: none;
   border-bottom: 2px solid var(--acc-clr);
+  background: var(--clr-blk-1);
 }
 
 .task--view.light,
 .note--view.light {
-  transition: revert;
   background: var(--lt-clr-1);
+  transition: revert;
 }
 
 .task--view.light:hover,
@@ -67,24 +71,20 @@
   background: var(--lt-clr-2);
 }
 
-.note-label {
-  padding: 0 0.5em;
-  margin-top: 0.5em;
-  font-size: var(--font-small);
-}
-
 .note--view {
   min-height: 5em;
 }
 
 .del-btn--view {
-  background-color: var(--clr-blk-1);
-  border: none;
   padding: 0.3em;
   margin-top: 0.6em;
   border-radius: 5px;
-  color: inherit;
+
   font-size: var(--font-small);
+
+  color: inherit;
+  background-color: var(--clr-blk-1);
+  border: none;
 }
 
 .del-btn--view.light {
@@ -97,9 +97,9 @@
 
 /* backdrop */
 .back-drop--todo-view {
-  background-color: #3736368b;
   position: fixed;
   inset: 0;
+  background-color: #3736368b;
 }
 
 @media (max-width: 500px) {

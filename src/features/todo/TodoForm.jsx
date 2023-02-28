@@ -4,8 +4,8 @@ import { format } from 'date-fns';
 
 import { addDataToLS } from '../../utils/localStorage';
 import useTodoControls from '../../app/todoControls';
+import useThemeControls from '../../app/themeControls';
 
-import useThemeUpdator from '../../hooks/useThemeUpdator';
 import './todoForm.css';
 
 const date = new Date();
@@ -14,6 +14,7 @@ const dateFormated = format(date, 'dd-MMM');
 function TodoForm() {
 
     const { addTodo } = useTodoControls();
+    const { theme } = useThemeControls();
 
     const inputRef = useRef();
 
@@ -32,8 +33,6 @@ function TodoForm() {
         addDataToLS(todo);
         addTodo(todo);
     };
-
-    const theme = useThemeUpdator();
 
     const inputHandler = function (e) {
         todo = { ...todo, task: e.target.value };

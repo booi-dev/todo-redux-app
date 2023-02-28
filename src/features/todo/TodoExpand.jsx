@@ -41,20 +41,18 @@ function TodoView(props) {
                     onKeyDown={handlerEnterKey}
                     onBlur={() => handleUpdateTodo(todoData)}
                 />
-                <label htmlFor="note" className='note-label'>note :
-                    <textarea
-                        id="note"
-                        className={`note--view ${theme}`}
-                        value={todoData.note}
-                        placeholder='add note ...'
-                        onChange={(e) => setTodoData({
-                            ...todoData,
-                            note: e.currentTarget.value
-                        })}
-                        onKeyDown={handlerEnterKey}
-                        onBlur={() => handleUpdateTodo(todoData)}
-                    />
-                </label>
+                <textarea
+                    id="note"
+                    className={`note--view ${theme}`}
+                    value={todoData.note}
+                    placeholder='add note ...'
+                    onChange={(e) => setTodoData({
+                        ...todoData,
+                        note: e.currentTarget.value
+                    })}
+                    onKeyDown={handlerEnterKey}
+                    onBlur={() => handleUpdateTodo(todoData)}
+                />
 
                 <button type='button' onClick={closeTodoView}
                     className={`del-btn--view ${theme}`}

@@ -1,14 +1,15 @@
 .form {
   display: flex;
   justify-content: space-between;
-  gap: 10%;
+  gap: 0.5em;
 }
 
 .input--form {
-  border-radius: 5px;
   padding: 0.3em 0.6em;
   width: 100%;
+
   font-size: var(--font-medium);
+
   border: 1px solid transparent;
   transition: border-color 0.8s ease-in;
 }
@@ -25,12 +26,14 @@
 }
 
 .sub-btn--form {
-  border-radius: 5px;
-  border: 1px solid transparent;
   padding: 0.2em 1em;
+
   font-size: 0.8em;
   font-family: inherit;
+
   background-color: var(--clr-wht-1);
+  border: 1px solid transparent;
+
   cursor: pointer;
   transition: border-color 0.8s ease-in;
 }
@@ -42,9 +45,9 @@
 }
 
 .sub-btn--form:hover {
-  scale: 102%;
-  border-color: var(--acc-clr);
   color: var(--acc-clr);
+  border-color: var(--acc-clr);
+  scale: 1.1;
 }
 
 .sub-btn--form:focus,
