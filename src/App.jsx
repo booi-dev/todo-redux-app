@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div className={`app-container ${theme}`}>
-      <div className='App'>
+      <div className={`App ${theme}`}>
         <TodoForm />
         <SettingPanel toggleFilter={toggleFilter} />
         <TodoList todos={todos} />
