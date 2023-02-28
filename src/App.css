@@ -26,6 +26,7 @@
   --font-small: 14px;
   --font-medium: 16px;
   --font-large: 18px;
+  --font-xlarge: 22px;
 
   --line-height: 20px;
 
@@ -33,7 +34,6 @@
 }
 
 .App {
-  position: relative;
   margin-inline: auto;
   padding: 3em 4em;
   box-shadow: 0 0 4px #4444446c;
@@ -60,4 +60,9 @@
 .app-container.light {
   background-color: var(--lt-clr-1);
   color: var(--lt-font-clr-1);
+}
+
+.app-title {
+  font-size: var(--font-xlarge);
+  padding-block: 0.5em;
 }

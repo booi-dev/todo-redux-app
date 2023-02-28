@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HiSun, HiMoon, HiCollection } from "react-icons/hi";
+import { HiSun, HiMoon, HiFolderOpen } from "react-icons/hi";
 
 import useTodoControls from '../app/todoControls';
 import useThemeControls from '../app/themeControls';
@@ -42,7 +42,7 @@ function SettingPanel(props) {
                 className="clear-all-btn"
             >
                 <span type='button' className={`clear-btn btn--setting ${theme}`}>clear all</span>
-                <HiCollection />
+                <HiFolderOpen />
             </button>
 
             <button type='button' className={`toggle-dark-theme-btn ${theme}`}
