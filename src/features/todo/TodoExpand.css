@@ -5,14 +5,13 @@
   flex-direction: column;
   gap: 0.3em;
   inset: 0;
-  top: 30%;
+  top: 35%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  translate: -50% -50%;
   width: 450px;
-  height: 240px;
+  min-height: max-content;
   padding: 2em;
 
-  border-radius: 5px;
   color: var(--font-clr);
   background-color: var(--clr-2);
   box-shadow: 0px 0px 2px var(--clr-3);
@@ -21,10 +20,6 @@
 
 .todo-view.light {
   background-color: var(--lt-clr-2);
-}
-
-.task--view {
-  min-height: 2.2em;
 }
 
 .task--view,
@@ -36,7 +31,6 @@
   font-family: inherit;
 
   color: inherit;
-  border-radius: 5px;
   background-color: inherit;
   border: none;
   resize: none;
@@ -69,7 +63,11 @@
 
 .task--view.light:hover,
 .note--view.light:hover {
-  background: var(--lt-clr-2);
+  background: var(--lt-clr-3);
+}
+
+.task--view {
+  min-height: max-content;
 }
 
 .note--view {
@@ -79,10 +77,7 @@
 .del-btn--view {
   padding: 0.3em;
   margin-top: 0.6em;
-  border-radius: 5px;
-
   font-size: var(--font-small);
-
   color: inherit;
   background-color: var(--clr-blk-1);
   border: none;
@@ -94,17 +89,4 @@
 
 .del-btn--view:hover {
   border-bottom: 2px solid var(--acc-clr);
-}
-
-/* backdrop */
-.back-drop--todo-view {
-  position: fixed;
-  inset: 0;
-  background-color: #3736368b;
-}
-
-@media (max-width: 500px) {
-  .todo-view {
-    width: 90%;
-  }
 }

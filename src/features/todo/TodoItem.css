@@ -98,6 +98,7 @@
   right: 0.5em;
   translate: 0 -50%;
   background-color: white;
+  z-index: 2;
 }
 
 .option-btn {

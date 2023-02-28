@@ -4,6 +4,8 @@ import { updateDataLS } from '../../utils/localStorage';
 import useTodoControls from '../../app/todoControls';
 import useThemeControls from '../../app/themeControls';
 
+import BackDrop from '../../components/BackDrop';
+
 import './TodoExpand.css';
 
 function TodoView(props) {
@@ -15,9 +17,9 @@ function TodoView(props) {
 
     const [todoData, setTodoData] = useState({ ...todo });
 
-    const closeTodoView = function () {
-        toggleTodoView();
-    };
+    // const closeTodoView = useCallback(() => {
+    //     toggleTodoView();
+    // }, []);
 
     const handleUpdateTodo = function (targetTodo) {
         updateTodo(targetTodo);
@@ -29,7 +31,7 @@ function TodoView(props) {
     };
 
     return (
-        <>
+        <div>
             <div className={`todo-view ${theme}`}>
                 <textarea
                     className={`task--view ${theme}`}
@@ -54,22 +56,13 @@ function TodoView(props) {
                     onBlur={() => handleUpdateTodo(todoData)}
                 />
 
-                <button type='button' onClick={closeTodoView}
+                <button type='button' onClick={() => toggleTodoView()}
                     className={`del-btn--view ${theme}`}
                 >close</button>
             </div>
+            <BackDrop handler={toggleTodoView} />
 
-            <button type='button'
-                className='back-drop--todo-view'
-                onClick={closeTodoView}
-                onKeyDown={event => {
-                    if (event.key === 'Esc') {
-                        closeTodoView();
-                    }
-                }}
-            />
-
-        </>
+        </div>
     );
 }
 

@@ -77,7 +77,7 @@ function TodoView(props) {
 
                 <button type='button'
                     onClick={() => setIsOptions(!isOptions)}>
-                    <GoKebabVertical className='kebab-menu-btn' />
+                    <GoKebabVertical className='kebab-menu-btn' size={20} />
                 </button>
                 {isOptions &&
                     <BackDrop handler={backdropHandler} />
