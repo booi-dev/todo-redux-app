@@ -14,12 +14,12 @@
 
   color: var(--font-clr);
   background-color: var(--clr-2);
-  box-shadow: 0px 0px 2px var(--clr-3);
+  box-shadow: 0px 0px 1px var(--clr-3);
   z-index: 2;
 }
 
 .todo-view.light {
-  background-color: var(--lt-clr-2);
+  background-color: var(--lt-clr-1);
 }
 
 .task--view,
@@ -57,7 +57,7 @@
 
 .task--view.light,
 .note--view.light {
-  background: var(--lt-clr-1);
+  background: var(--lt-clr-2);
   transition: revert;
 }
 
@@ -84,9 +84,13 @@
 }
 
 .del-btn--view.light {
-  background-color: var(--lt-clr-1);
+  background-color: var(--lt-clr-2);
 }
 
 .del-btn--view:hover {
   border-bottom: 2px solid var(--acc-clr);
+}
+
+.del-btn--view.light:hover {
+  background-color: var(--lt-clr-3);
 }
