@@ -59,6 +59,12 @@ function TodoForm() {
         e.key === "Enter" && submitHandler(e);
     };
 
+    const autoClearInputField = () => {
+        setTimeout(() => {
+            clearInputVal();
+        }, 2000);
+    };
+
     useEffect(() => {
         inputRef.current.focus();
     }, []);
@@ -71,10 +77,12 @@ function TodoForm() {
             <input
                 className={`input--form ${theme}`}
                 ref={inputRef}
-                onChange={inputHandler}
-                onKeyDown={enterHandler}
                 placeholder="add note"
                 required
+                onChange={inputHandler}
+                onKeyDown={enterHandler}
+                onBlur={autoClearInputField}
+
             />
             <button type='submit' className={`sub-btn--form ${theme}`}>add</button>
         </form>
