@@ -39,6 +39,7 @@ function SettingPanel(props) {
 
             <button type="button"
                 onClick={clearAllTodo}
+                className="clear-all-btn"
             >
                 <span type='button' className={`clear-btn btn--setting ${theme}`}>clear all</span>
                 <HiCollection />

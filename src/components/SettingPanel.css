@@ -29,6 +29,10 @@
   scale: 1.1;
 }
 
+.clear-all-btn:hover {
+  background-color: red;
+}
+
 .toggle-dark-theme-btn.dark {
   background-color: #e4d0c1;
 }
