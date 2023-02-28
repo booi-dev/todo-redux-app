@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { HiSun, HiMoon, HiCollection } from "react-icons/hi";
 
 import useTodoControls from '../app/todoControls';
-import useThemeControl from '../app/themeControls';
+import useThemeControls from '../app/themeControls';
 import { clearDataLS } from '../utils/localStorage';
 
 import './SettingPanel.css';
@@ -11,13 +11,13 @@ function SettingPanel(props) {
 
     const { toggleFilter } = props;
 
-    const { clearTodo } = useTodoControls();
-    const { theme, toggleDarkTheme } = useThemeControl();
+    const { resetTodo } = useTodoControls();
+    const { theme, toggleDarkTheme } = useThemeControls();
 
     const [isHide, setisHide] = useState(false);
 
     const clearAllTodo = () => {
-        clearTodo();
+        resetTodo();
         clearDataLS();
     };
 
@@ -33,7 +33,7 @@ function SettingPanel(props) {
                 className={`filter btns-con--setting ${theme}`}
                 onClick={toggleCompletedTaskHide}
             >
-                <span type='button' className={`filter btn--setting ${theme}`}> {isHide ? 'show completed' : 'hide completed'}
+                <span type='button' className={`filter btn--setting ${theme}`}> {isHide ? 'show' : 'hide'}
                 </span>
             </button>
 
@@ -47,11 +47,11 @@ function SettingPanel(props) {
             <button type='button' className={`toggle-dark-theme-btn ${theme}`}
                 onClick={toggleDarkTheme}
             >
-                toggle theme
+                theme
                 {
                     theme === 'dark'
-                        ? <HiMoon />
-                        : <HiSun />
+                        ? <HiSun />
+                        : <HiMoon />
                 }
             </button>
         </div>

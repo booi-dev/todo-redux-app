@@ -1,23 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { updateDataLS } from '../../utils/localStorage';
 import useTodoControls from '../../app/todoControls';
+import useThemeControls from '../../app/themeControls';
 
-import { useTheme } from '../../context/ThemeContext';
 import './TodoExpand.css';
 
-function TodoView({ todo, toggleTodoView }) {
+function TodoView(props) {
+
+    const { todo, toggleTodoView } = props;
 
     const { updateTodo } = useTodoControls();
-
-    const lightTheme = useTheme();
-    const [theme, setTheme] = useState('dark');
+    const { theme } = useThemeControls;
 
     const [todoData, setTodoData] = useState({ ...todo });
-
-    useEffect(() => {
-        lightTheme ? setTheme('light') : setTheme('dark');
-    }, [lightTheme]);
 
     const closeTodoView = function () {
         toggleTodoView();

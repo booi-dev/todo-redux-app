@@ -2,7 +2,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { updateTheme } from '../features/theme/themeSlice';
 
-function useThemeControl() {
+function useThemeControls() {
 
     const theme = useSelector((state) => state.themeStore.theme);
     const dispatch = useDispatch();
@@ -19,4 +19,4 @@ function useThemeControl() {
     return { theme, setTheme, toggleDarkTheme };
 }
 
-export default useThemeControl;
+export default useThemeControls;

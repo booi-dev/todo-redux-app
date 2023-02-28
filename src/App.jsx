@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 
 import useTodoControls from './app/todoControls';
-import useThemeControl from './app/themeControls';
+import useThemeControls from './app/themeControls';
 
 import { getDataFromLS } from './utils/localStorage';
 import sortArray from './utils/sort';
@@ -15,7 +15,7 @@ import './App.css';
 function App() {
 
   const { todoData, resetTodo } = useTodoControls();
-  const { theme } = useThemeControl();
+  const { theme } = useThemeControls();
 
   const todos = sortArray(todoData);
 
