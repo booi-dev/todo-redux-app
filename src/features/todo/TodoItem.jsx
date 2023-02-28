@@ -66,16 +66,16 @@ function TodoView(props) {
                         {todo.task}
                     </button>
                 </div>
-                {isDelBtnShow
+                {
+                    isDelBtnShow
                     && <button
                         type='button'
                         className='del-btn--todo'
                         onClick={() => handleDelBtnClick(todo)}
                     >
-                        <MdDeleteForever size={20} />
+                        <MdDeleteForever size={23} className="del-btn--icon" />
                     </button>
                 }
-
             </div>
             {isExpand && <TodoExpand todo={todo}
                 toggleTodoView={toggleTodoView}
