@@ -23,15 +23,6 @@ function TodoView(props) {
 
     const [todoAnimClass, setTodoAnimClass] = useState('');
 
-    const handleDelBtnClick = (targetTodo) => {
-        setTodoAnimClass('vanishing-anim');
-        setIsOptions(false);
-        setTimeout(() => {
-            deleteTodo(targetTodo);
-            deleteDataFromLS(targetTodo);
-        }, 1000);
-    };
-
     const handleToggleComplete = (targetTodo) => {
         switchComplete(targetTodo);
         toggleDataCompleteLS(targetTodo);
@@ -48,6 +39,15 @@ function TodoView(props) {
     const handleExpandBtn = () => {
         setIsExpand(!isExpand);
         setIsOptions(false);
+    };
+
+    const handleDelBtnClick = (targetTodo) => {
+        setTodoAnimClass('vanishing-anim');
+        setIsOptions(false);
+        setTimeout(() => {
+            deleteTodo(targetTodo);
+            deleteDataFromLS(targetTodo);
+        }, 1000);
     };
 
     const backdropHandler = () => {
@@ -90,7 +90,7 @@ function TodoView(props) {
                             onClick={handleExpandBtn}
                         >expand</button>
                         <button type='button' className='option-btn delete'
-                            onClick={handleDelBtnClick}>delete </button>
+                            onClick={() => handleDelBtnClick(todo)}>delete </button>
                     </div>
                 }
 
