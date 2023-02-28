@@ -3,10 +3,11 @@ import { useCallback, useState } from 'react';
 
 import { deleteDataFromLS, toggleDataCompleteLS } from '../../utils/localStorage';
 import useTodoControls from '../../app/todoControls';
+// import useThemeControls from '../../app/themeControls';
 
 import deleteIcon from '../../assets/delete.png';
 import deleteIconWarning from '../../assets/delete-warn.png';
-import useThemeUpdator from '../../hooks/useThemeUpdator';
+// import useThemeUpdator from '../../hooks/useThemeUpdator';
 
 import TodoExpand from './TodoExpand';
 
@@ -17,13 +18,12 @@ function TodoView(props) {
     const { todo } = props;
 
     const { deleteTodo, switchComplete } = useTodoControls();
+    // const { theme } = useThemeControls();
 
     const [btnClass, setBtnClass] = useState('del-btn--todo');
     const [delBtnWarning, setSelBtnWarning] = useState(false);
     const [todoAnimClass, setTodoAnimClass] = useState('');
     const [isExpand, setIsExpand] = useState(false);
-
-    const theme = useThemeUpdator();
 
     const handleDelBtnClick = (targetTodo) => {
         setTodoAnimClass('vanishing-anim');
@@ -49,7 +49,7 @@ function TodoView(props) {
     return (
         <>
             <div
-                className={`todo ${todoAnimClass} ${theme}`}
+                className={`todo ${todoAnimClass}`}
                 onMouseEnter={() => setBtnClass('del-btn--todo show')}
                 onMouseLeave={() => setBtnClass('del-btn--todo')}
             >

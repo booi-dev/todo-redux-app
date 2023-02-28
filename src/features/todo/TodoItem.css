@@ -3,11 +3,14 @@
   align-items: center;
   justify-content: space-between;
   gap: 10%;
+
   margin-block: 0.5em;
   padding: 0.5em;
-  cursor: pointer;
+
   border-radius: 5px;
   border-bottom: 1px solid var(--clr-2);
+
+  cursor: pointer;
   transition: background 0.7s ease, opacity 1s ease-in, translate 1s ease-in;
 }
 
@@ -21,19 +24,22 @@
 }
 
 .todo.vanishing-anim {
-  opacity: 0.2;
   translate: -100%;
+  opacity: 0.2;
 }
 
 .checkbox--todo {
   appearance: none;
   -webkit-appearance: none;
+
+  position: relative;
+
+  translate: 0 4px;
   width: 20px;
   height: 20px;
-  border: 2px solid var(--clr-1);
-  translate: 0 4px;
   margin-right: 0.8em;
-  position: relative;
+
+  border: 2px solid var(--clr-1);
   transition: border 0.5s ease-in;
 }
 
@@ -43,22 +49,25 @@
 
 .checkbox--todo:checked::before {
   content: " ";
-  width: 10px;
-  height: 10px;
   position: absolute;
   inset: 0;
   margin: auto;
+  width: 10px;
+  height: 10px;
   background-color: var(--acc-clr);
 }
 
 .task--todo {
+  display: inline;
+
   font-size: var(--font-medium);
   font-weight: 400;
-  display: inline;
-  transition: opacity 0.7s ease-in;
+
+  color: inherit;
   background-color: transparent;
   border: none;
-  color: inherit;
+
+  transition: opacity 0.7s ease-in;
 }
 
 .task--todo.vanishing-anim {
@@ -70,10 +79,11 @@
 }
 
 .del-btn--todo.show {
-  transition: opacity 3s ease;
-  opacity: 1;
   background: transparent;
   border: none;
+
+  transition: opacity 3s ease;
+  opacity: 1;
 }
 
 .del-btn--todo img {
