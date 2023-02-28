@@ -36,7 +36,6 @@
   border: 1px solid transparent;
 
   cursor: pointer;
-  transition: border-color 0.8s ease-in;
 }
 
 .sub-btn--form.light {
@@ -46,8 +45,8 @@
 }
 
 .sub-btn--form:hover {
-  color: var(--acc-clr);
   border-color: var(--acc-clr);
+  background-color: var(--acc-clr);
   scale: 1.1;
 }
 
