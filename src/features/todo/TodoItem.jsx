@@ -67,7 +67,7 @@ function TodoView(props) {
                             {
                                 todo.isComplete
                                     ? <BsCheckCircle size={20} className='circle-icon checked' />
-                                    : <BsCircle size={20} className='circle-icon' />
+                                    : <BsCircle size={20} className={`circle-icon ${theme}`} />
                             }
                         </button>
                         <span type='button'

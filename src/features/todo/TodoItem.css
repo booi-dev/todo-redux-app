@@ -118,6 +118,10 @@
   color: var(--font-clr-1);
 }
 
+.circle-icon.light {
+  color: var(--lt-font-clr-1);
+}
+
 .circle-icon.checked {
   color: var(--acc-clr);
 }
