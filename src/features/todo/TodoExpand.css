@@ -8,9 +8,9 @@
   top: 35%;
   left: 50%;
   translate: -50% -50%;
-  width: 450px;
+  width: 100%;
   min-height: max-content;
-  padding: 2em;
+  padding: 1em;
 
   color: var(--font-clr);
   background-color: var(--clr-2);
@@ -93,4 +93,11 @@
 
 .del-btn--view.light:hover {
   background-color: var(--lt-clr-3);
+}
+
+@media (width > 450px) {
+  .todo-view {
+    width: 500px;
+    padding: 2em;
+  }
 }
