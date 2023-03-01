@@ -68,11 +68,11 @@
 }
 
 .task--view {
-  min-height: max-content;
+  min-height: min-content;
 }
 
 .note--view {
-  min-height: 5em;
+  min-height: 6em;
 }
 
 .del-btn--view {
