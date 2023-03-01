@@ -9,6 +9,7 @@
   margin-block: 0.5em;
   padding: 0.5em;
 
+  background-color: var(--bg-clr-dark-2);
   border-radius: 5px;
   border-bottom: 1px solid var(--clr-2);
 
@@ -21,8 +22,24 @@
   border-bottom: 2px solid var(--acc-clr);
 }
 
+.todo.light {
+  background-color: var(--lt-clr-2);
+}
+
 .todo.light:hover {
-  background: var(--lt-clr-2);
+  background: var(--lt-clr-3);
+}
+
+.todo.vanishing-anim {
+  translate: -100%;
+  opacity: 0.2;
+}
+
+.todo button {
+  display: inline-flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
 }
 
 .todo-check-task-container {
@@ -30,19 +47,6 @@
   align-items: center;
   gap: 0.5em;
   width: 100%;
-}
-
-.circle-icon {
-  color: var(--font-clr-1);
-}
-
-.circle-icon.checked {
-  color: var(--acc-clr);
-}
-
-.todo.vanishing-anim {
-  translate: -100%;
-  opacity: 0.2;
 }
 
 .task--todo {
@@ -63,44 +67,30 @@
   opacity: 0;
 }
 
-.todo button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  border: none;
-}
-
-.kebab-menu-btn {
-  color: var(--clr-1);
-  cursor: pointer;
-}
-
-.kebab-menu-btn:hover {
-  scale: 1.1;
-}
-
 .option-menu {
-  position: absolute;
-  display: grid;
+  display: flex;
   place-content: center;
   gap: 5px;
-  top: 50%;
-  right: 0.5em;
-  translate: 0 -50%;
-  height: 100px;
-  background-color: white;
+  margin-top: -36px;
+
+  z-index: 0;
+  transition: all 1s ease;
+}
+
+.option-menu.show {
+  margin-top: 0px;
+  height: 100%;
   z-index: 2;
 }
 
 .option-btn {
-  text-align: start;
   width: 100%;
   padding: 0.25em 1em;
   font-family: inherit;
   font-size: var(--font-small);
-  color: var(--clr-1);
-  border: 1px solid;
+  color: var(--font-clr-1);
+  border: none;
+  border-radius: 5px;
 }
 
 .option-btn:hover {
@@ -108,6 +98,40 @@
   background: rgb(120, 120, 120);
 }
 
+.option-btn.dark {
+  background-color: var(--clr-1);
+  color: var(--font-clr-1);
+}
+
+.option-btn.light {
+  background-color: var(--lt-clr-3);
+  color: var(--lt-font-clr-1);
+}
+
 .option-btn.delete:hover {
   background: #e92222;
+}
+
+/* icons */
+
+.circle-icon {
+  color: var(--font-clr-1);
+}
+
+.circle-icon.checked {
+  color: var(--acc-clr);
+}
+
+.arrow-down-icon {
+  color: var(--clr-1);
+  cursor: pointer;
+  transition: rotate 0.5s ease;
+}
+
+.arrow-down-icon:hover {
+  scale: 1.3;
+}
+
+.arrow-down-icon.up {
+  rotate: 180deg;
 }

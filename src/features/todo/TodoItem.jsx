@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import { useCallback, useState } from 'react';
-import { GoKebabVertical } from 'react-icons/go';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 import { BsCircle, BsCheckCircle } from 'react-icons/bs';
 
 import { deleteDataFromLS, toggleDataCompleteLS } from '../../utils/localStorage';
@@ -8,7 +8,6 @@ import useTodoControls from '../../app/todoControls';
 import useThemeControls from '../../app/themeControls';
 
 import TodoExpand from './TodoExpand';
-import BackDrop from '../../components/BackDrop';
 
 import './TodoItem.css';
 
@@ -39,72 +38,65 @@ function TodoView(props) {
     };
 
     const handleExpandBtn = () => {
+        if (!isOptions) return;
         setIsExpand(!isExpand);
         setIsOptions(false);
     };
 
     const handleDelBtnClick = (targetTodo) => {
-        setTodoAnimClass('vanishing-anim');
+        if (!isOptions) return;
         setIsOptions(false);
+        setTodoAnimClass('vanishing-anim');
         setTimeout(() => {
             deleteTodo(targetTodo);
             deleteDataFromLS(targetTodo);
         }, 1000);
     };
 
-    const backdropHandler = () => {
-        setIsOptions(false);
-    };
-
-    const onParentClick = () => {
-        console.log("parent clicked");
-    };
-
     return (
         <>
-            <div className={`todo ${todoAnimClass} ${theme}`}>
-                <div role='group'
-                    className='todo-check-task-container'
-                    onClick={onParentClick}>
+            <div>
+
+                <div className={`todo ${todoAnimClass} ${theme}`}>
+                    <div role='group'
+                        className='todo-check-task-container'>
+                        <button type='button'
+                            className='todo-check-btn'
+                            onClick={(e) => { handleToggleComplete(todo, e); }}
+                        >
+                            {
+                                todo.isComplete
+                                    ? <BsCheckCircle size={20} className='circle-icon checked' />
+                                    : <BsCircle size={20} className='circle-icon' />
+                            }
+                        </button>
+                        <span type='button'
+                            role='button'
+                            tabIndex={0}
+                            className={`task--todo ${todoAnimClass}`}
+                            onClick={toggleTodoView}
+                            onKeyDown={handleEnterForTask}
+                        >
+                            {todo.task}
+                        </span>
+                    </div>
+
                     <button type='button'
-                        className='todo-check-btn'
-                        onClick={(e) => { handleToggleComplete(todo, e); }}
-                    >
-                        {
-                            todo.isComplete
-                                ? <BsCheckCircle size={20} className='circle-icon checked' />
-                                : <BsCircle size={20} className='circle-icon' />
-                        }
+                        onClick={() => setIsOptions(!isOptions)}>
+                        <MdKeyboardArrowDown className={`arrow-down-icon ${isOptions && 'up'}`} size={28} />
                     </button>
-                    <span type='button'
-                        role='button'
-                        tabIndex={0}
-                        className={`task--todo ${todoAnimClass}`}
-                        onClick={toggleTodoView}
-                        onKeyDown={handleEnterForTask}
-                    >
-                        {todo.task}
-                    </span>
                 </div>
 
-                <button type='button'
-                    onClick={() => setIsOptions(!isOptions)}>
-                    <GoKebabVertical className='kebab-menu-btn' size={20} />
-                </button>
-                {isOptions &&
-                    <BackDrop handler={backdropHandler} />
-                }
-                {isOptions &&
-                    <div className='option-menu'
-                        onMouseLeave={() => setIsOptions(false)}>
-                        <button type='button' className='option-btn'
-                            onClick={handleExpandBtn}
-                        >expand</button>
-                        <button type='button' className='option-btn delete'
-                            onClick={() => handleDelBtnClick(todo)}>delete </button>
-                    </div>
-                }
-
+                <div className={`option-menu ${theme} ${isOptions && 'show'}`}
+                    onMouseLeave={() => setIsOptions(false)}
+                >
+                    <button type='button' className={`option-btn ${theme}`}
+                        onClick={handleExpandBtn}
+                    >view note</button>
+                    <button type='button' className={`option-btn delete ${theme}`}
+                        onClick={() => handleDelBtnClick(todo)}>delete
+                    </button>
+                </div>
             </div>
             {isExpand && <TodoExpand todo={todo}
                 toggleTodoView={toggleTodoView}
