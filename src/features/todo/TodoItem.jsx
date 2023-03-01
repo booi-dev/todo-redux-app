@@ -84,8 +84,7 @@ function TodoView(props) {
                 }
                 {isOptions &&
                     <div className='option-menu'
-                        onMouseLeave={() => setIsOptions(false)}
-                    >
+                        onMouseLeave={() => setIsOptions(false)}>
                         <button type='button' className='option-btn'
                             onClick={handleExpandBtn}
                         >expand</button>

@@ -79,7 +79,7 @@
 .todo button {
   display: grid;
   place-self: center;
-  background: transparent;
+  background-color: transparent;
   border: none;
 }
 
@@ -94,9 +94,13 @@
 
 .option-menu {
   position: absolute;
+  display: grid;
+  place-content: center;
+  gap: 5px;
   top: 50%;
   right: 0.5em;
   translate: 0 -50%;
+  height: 100px;
   background-color: white;
   z-index: 2;
 }
@@ -108,7 +112,6 @@
   font-family: inherit;
   font-size: var(--font-small);
   color: var(--clr-1);
-  background: transparent;
   border: 1px solid;
 }
 
