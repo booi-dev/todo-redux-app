@@ -29,6 +29,8 @@ module.exports = {
         "no-unused-expressions": "off",
         'no-console': 'off',
         'jsx-a11y/control-has-associated-label': 'off',
+        'jsx-a11y/click-events-have-key-events': 'off',
+        'jsx-a11y/no-noninteractive-element-interactions': 'off',
     },
     // "required": {
     //     "some": ["nesting", "id"]

@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import { useCallback, useState } from 'react';
 import { GoKebabVertical } from 'react-icons/go';
+import { BsCircle, BsCheckCircle } from 'react-icons/bs';
 
 import { deleteDataFromLS, toggleDataCompleteLS } from '../../utils/localStorage';
 import useTodoControls from '../../app/todoControls';
@@ -23,7 +24,8 @@ function TodoView(props) {
 
     const [todoAnimClass, setTodoAnimClass] = useState('');
 
-    const handleToggleComplete = (targetTodo) => {
+    const handleToggleComplete = (targetTodo, e) => {
+        e.stopPropagation();
         switchComplete(targetTodo);
         toggleDataCompleteLS(targetTodo);
     };
@@ -54,16 +56,26 @@ function TodoView(props) {
         setIsOptions(false);
     };
 
+    const onParentClick = () => {
+        console.log("parent clicked");
+    };
+
     return (
         <>
             <div className={`todo ${todoAnimClass} ${theme}`}>
-                <div>
-                    <input
-                        type="checkbox"
-                        className='checkbox--todo'
-                        onChange={() => handleToggleComplete(todo)}
-                        checked={todo.isComplete}
-                    />
+                <div role='group'
+                    className='todo-check-task-container'
+                    onClick={onParentClick}>
+                    <button type='button'
+                        className='todo-check-btn'
+                        onClick={(e) => { handleToggleComplete(todo, e); }}
+                    >
+                        {
+                            todo.isComplete
+                                ? <BsCheckCircle size={20} className='circle-icon checked' />
+                                : <BsCircle size={20} className='circle-icon' />
+                        }
+                    </button>
                     <span type='button'
                         role='button'
                         tabIndex={0}
