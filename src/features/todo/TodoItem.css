@@ -13,6 +13,7 @@
   border-radius: 5px;
   border-bottom: 1px solid var(--clr-2);
 
+  z-index: 1;
   cursor: pointer;
   transition: background 0.7s ease, opacity 1s ease-in, translate 1s ease-in;
 }
@@ -72,14 +73,15 @@
   place-content: center;
   gap: 5px;
   margin-top: -36px;
-
-  z-index: 0;
+  opacity: 0;
+  z-index: -1;
   transition: all 1s ease;
 }
 
 .option-menu.show {
   margin-top: 0px;
   height: 100%;
+  opacity: 1;
   z-index: 2;
 }
 

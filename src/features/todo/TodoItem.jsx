@@ -56,7 +56,6 @@ function TodoView(props) {
     return (
         <>
             <div>
-
                 <div className={`todo ${todoAnimClass} ${theme}`}>
                     <div role='group'
                         className='todo-check-task-container'>
@@ -86,10 +85,8 @@ function TodoView(props) {
                         <MdKeyboardArrowDown className={`arrow-down-icon ${isOptions && 'up'}`} size={28} />
                     </button>
                 </div>
-
                 <div className={`option-menu ${theme} ${isOptions && 'show'}`}
-                    onMouseLeave={() => setIsOptions(false)}
-                >
+                    onMouseLeave={() => setIsOptions(false)} >
                     <button type='button' className={`option-btn ${theme}`}
                         onClick={handleExpandBtn}
                     >view note</button>
