@@ -2,15 +2,15 @@
   position: fixed;
 
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  gap: 0.3em;
-  inset: 0;
+  gap: 1em;
   top: 35%;
   left: 50%;
   translate: -50% -50%;
-  width: 100%;
+  width: 95%;
   min-height: max-content;
-  padding: 1em;
+  padding: 2em 1em;
 
   color: var(--font-clr);
   background-color: var(--clr-2);
@@ -31,7 +31,8 @@
   font-family: inherit;
 
   color: inherit;
-  background-color: inherit;
+  /* background-color: inherit; */
+  background-color: var(--clr-blk-1);
   border: none;
   resize: none;
   transition: background 0.5s ease-in;
@@ -57,7 +58,7 @@
 
 .task--view.light,
 .note--view.light {
-  background: var(--lt-clr-2);
+  background: var(--lt-clr-3);
   transition: revert;
 }
 
@@ -76,7 +77,6 @@
 
 .del-btn--view {
   padding: 0.3em;
-  margin-top: 0.6em;
   font-size: var(--font-small);
   color: inherit;
   background-color: var(--clr-blk-1);
@@ -84,15 +84,11 @@
 }
 
 .del-btn--view.light {
-  background-color: var(--lt-clr-2);
+  background-color: var(--lt-clr-3);
 }
 
 .del-btn--view:hover {
   border-bottom: 2px solid var(--acc-clr);
-}
-
-.del-btn--view.light:hover {
-  background-color: var(--lt-clr-3);
 }
 
 @media (width > 450px) {
