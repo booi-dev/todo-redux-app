@@ -43,12 +43,12 @@ function TodoView(props) {
     };
 
     const handleExpandBtn = useCallback(() => {
-        if (isOptionShow) return;
+        if (!isOptionShow) return;
         setIsExpand(!isExpand);
     }, [isOptionShow, isExpand]);
 
     const handleDelBtnClick = useCallback((targetTodo) => {
-        if (isOptionShow) return;
+        if (!isOptionShow) return;
         setTodoAnimClass('vanishing-anim');
         setTimeout(() => {
             deleteTodo(targetTodo);
