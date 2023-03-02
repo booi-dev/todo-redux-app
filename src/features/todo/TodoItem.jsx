@@ -34,7 +34,7 @@ function TodoView(props) {
     });
 
     const toggleOptions = (targetTodo) => {
-        if (isOptionShow) setIsOptionShow('');
+        if (isOptionShow) { setIsOptionShow(' '); }
         else { setIsOptionShow(targetTodo.id); }
     };
 

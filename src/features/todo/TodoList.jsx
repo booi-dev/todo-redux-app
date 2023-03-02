@@ -7,6 +7,10 @@ function TodoList(props) {
 
     const [activeOptionIndex, setActiveOptionIndex] = useState('');
 
+    const setIsOptionShow = (state) => {
+        setActiveOptionIndex(state);
+    };
+
     return (
         <ul className="todo-list">
             {todos.map(todo => (
@@ -14,7 +18,7 @@ function TodoList(props) {
                     key={todo.id}
                     todo={todo}
                     isOptionShow={activeOptionIndex === todo.id}
-                    setIsOptionShow={() => setActiveOptionIndex(todo.id)}
+                    setIsOptionShow={setIsOptionShow}
                 />
             ))}
         </ul>
