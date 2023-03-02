@@ -31,7 +31,7 @@ function TodoView(props) {
     };
 
     return (
-        <div>
+        <div className='todo-view-container'>
             <div className={`todo-view ${theme}`}>
                 <textarea
                     className={`task--view ${theme}`}
@@ -57,7 +57,7 @@ function TodoView(props) {
                 />
 
                 <button type='button' onClick={() => toggleTodoView()}
-                    className={`del-btn--view ${theme}`}
+                    className={`close-btn--view ${theme}`}
                 >close</button>
             </div>
             <BackDrop handler={toggleTodoView} />

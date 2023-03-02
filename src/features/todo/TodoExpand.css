@@ -10,12 +10,14 @@
   translate: -50% -50%;
   width: 95%;
   min-height: max-content;
-  padding: 2em 1em;
+  padding: 30px 15px;
 
   color: var(--font-clr);
   background-color: var(--clr-2);
   box-shadow: 0px 0px 1px var(--clr-3);
-  z-index: 2;
+  z-index: 3;
+
+  transition: all 0.5s ease;
 }
 
 .todo-view.light {
@@ -31,7 +33,6 @@
   font-family: inherit;
 
   color: inherit;
-  /* background-color: inherit; */
   background-color: var(--clr-blk-1);
   border: none;
   resize: none;
@@ -75,19 +76,21 @@
   min-height: 6em;
 }
 
-.del-btn--view {
-  padding: 0.3em;
+.close-btn--view {
+  padding: 0.5em;
   font-size: var(--font-small);
   color: inherit;
   background-color: var(--clr-blk-1);
   border: none;
+
+  cursor: pointer;
 }
 
-.del-btn--view.light {
+.close-btn--view.light {
   background-color: var(--lt-clr-3);
 }
 
-.del-btn--view:hover {
+.close-btn--view:hover {
   border-bottom: 2px solid var(--acc-clr);
 }
 
@@ -95,6 +98,6 @@
   .todo-view {
     top: 35%;
     width: 500px;
-    padding: 2em;
+    padding: 30px;
   }
 }
