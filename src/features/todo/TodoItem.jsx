@@ -7,18 +7,18 @@ import { deleteDataFromLS, toggleDataCompleteLS } from '../../utils/localStorage
 import useTodoControls from '../../app/todoControls';
 import useThemeControls from '../../app/themeControls';
 
+import TodoOptions from './TodoOptions';
 import TodoExpand from './TodoExpand';
 
 import './TodoItem.css';
 
 function TodoView(props) {
 
-    const { todo } = props;
+    const { todo, isOptionShow, setIsOptionShow } = props;
 
     const { deleteTodo, switchComplete } = useTodoControls();
     const { theme } = useThemeControls();
 
-    const [isOptions, setIsOptions] = useState(false);
     const [isExpand, setIsExpand] = useState(false);
 
     const [todoAnimClass, setTodoAnimClass] = useState('');
@@ -33,25 +33,28 @@ function TodoView(props) {
         setIsExpand(!isExpand);
     });
 
+    const toggleOptions = (targetTodo) => {
+        if (isOptionShow) setIsOptionShow('');
+        else { setIsOptionShow(targetTodo.id); }
+    };
+
     const handleEnterForTask = function (e) {
         e.key === "Enter" && toggleTodoView();
     };
 
-    const handleExpandBtn = () => {
-        if (!isOptions) return;
+    const handleExpandBtn = useCallback(() => {
+        if (isOptionShow) return;
         setIsExpand(!isExpand);
-        setIsOptions(false);
-    };
+    }, [isOptionShow, isExpand]);
 
-    const handleDelBtnClick = (targetTodo) => {
-        if (!isOptions) return;
-        setIsOptions(false);
+    const handleDelBtnClick = useCallback((targetTodo) => {
+        if (isOptionShow) return;
         setTodoAnimClass('vanishing-anim');
         setTimeout(() => {
             deleteTodo(targetTodo);
             deleteDataFromLS(targetTodo);
         }, 1000);
-    };
+    }, [isOptionShow]);
 
     return (
         <>
@@ -81,19 +84,16 @@ function TodoView(props) {
                     </div>
 
                     <button type='button'
-                        onClick={() => setIsOptions(!isOptions)}>
-                        <MdKeyboardArrowDown className={`arrow-down-icon ${isOptions && 'up'}`} size={28} />
+                        onClick={() => toggleOptions(todo)}>
+                        <MdKeyboardArrowDown className={`arrow-down-icon ${isOptionShow && 'up'}`} size={28} />
                     </button>
                 </div>
-                <div className={`option-menu ${theme} ${isOptions && 'show'}`}
-                    onMouseLeave={() => setIsOptions(false)} >
-                    <button type='button' className={`option-btn ${theme}`}
-                        onClick={handleExpandBtn}
-                    >view note</button>
-                    <button type='button' className={`option-btn delete ${theme}`}
-                        onClick={() => handleDelBtnClick(todo)}>delete
-                    </button>
-                </div>
+                <TodoOptions
+                    todo={todo}
+                    handleExpandBtn={handleExpandBtn}
+                    handleDelBtnClick={handleDelBtnClick}
+                    isOptionShow={isOptionShow}
+                />
             </div>
             {isExpand && <TodoExpand todo={todo}
                 toggleTodoView={toggleTodoView}

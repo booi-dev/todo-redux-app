@@ -5,7 +5,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 1em;
-  top: 35%;
+  top: 50%;
   left: 50%;
   translate: -50% -50%;
   width: 95%;
@@ -93,6 +93,7 @@
 
 @media (width > 450px) {
   .todo-view {
+    top: 35%;
     width: 500px;
     padding: 2em;
   }

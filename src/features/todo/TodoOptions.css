@@ -1,0 +1,45 @@
+.todo-option-menu {
+  display: flex;
+  place-content: center;
+  gap: 5px;
+  margin-top: -36px;
+  opacity: 0;
+  z-index: -1;
+  transition: all 1s ease;
+}
+
+.todo-option-menu.show {
+  margin-top: 0px;
+  height: 100%;
+  opacity: 1;
+  z-index: 2;
+}
+
+.todo-option-btn {
+  width: 100%;
+  padding: 0.25em 1em;
+  font-family: inherit;
+  font-size: var(--font-small);
+  color: var(--font-clr-1);
+  border: none;
+  border-radius: 5px;
+}
+
+.todo-option-btn:hover {
+  color: var(--font-clr-2);
+  background: rgb(120, 120, 120);
+}
+
+.todo-option-btn.dark {
+  background-color: var(--clr-1);
+  color: var(--font-clr-1);
+}
+
+.todo-option-btn.light {
+  background-color: var(--lt-clr-3);
+  color: var(--lt-font-clr-1);
+}
+
+.todo-option-btn.delete:hover {
+  background: #e92222;
+}
