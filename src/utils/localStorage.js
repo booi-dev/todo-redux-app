@@ -1,11 +1,12 @@
 
 const getDataFromLS = () => {
     console.log('get from LS');
-    const dataList = [];
-    Object.values(localStorage).forEach((d) => {
-        dataList.push(JSON.parse(d));
-    });
-    return dataList;
+    // const dataList = [];
+    // Object.values(localStorage).forEach((d) => {
+    //     dataList.push(JSON.parse(d));
+    // });
+    // return dataList;
+    return Object.values(localStorage);
 };
 
 const addDataToLS = (d) => {
